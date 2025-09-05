@@ -22,18 +22,18 @@ export const CSS_CLASSES = {
 
     // Mobile menu styles
     mobileOverlay: "lg:hidden fixed inset-0 z-[9999] transition-opacity duration-300 ease-in-out",
-    mobileBackdrop: "absolute inset-0",
-    mobilePanel: "absolute right-0 top-0 h-screen w-[62.5vw] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out",
+    mobileBackdrop: "absolute inset-0 bg-black/20",
+    mobilePanel: "absolute right-0 top-0 h-screen w-[62.5vw] bg-[#f8f8ff]/95 backdrop-blur-md shadow-2xl transform transition-transform duration-300 ease-in-out",
     mobileHeader: "flex items-center justify-between h-24 px-6 py-0 border-b-2 border-blue-900 bg-[#f8f8ff]",
-    mobileNavItem: "block px-6 py-4 text-lg font-medium text-gray-700 hover:text-blue-700 hover:bg-gray-50 transition-colors border-b border-blue-900 mx-8",
-    mobileSubItem: "block px-8 py-3 text-base text-gray-600 hover:text-blue-700 hover:bg-white transition-colors mx-8",
+    mobileNavItem: "block py-4 text-lg font-medium text-gray-700 hover:text-blue-700 hover:bg-blue-50/50 transition-all duration-200 border-b border-blue-900/20 rounded-lg",
+    mobileSubItem: "block px-6 py-3 text-base text-gray-600 hover:text-blue-700 hover:bg-blue-50/30 transition-all duration-200 rounded-lg",
 
     // Button styles
     primaryButton: "inline-flex items-center rounded-lg bg-blue-900 px-4 py-2 text-white font-medium hover:bg-blue-800 transition-all duration-300 transform hover:scale-105",
     mobileButton: "inline-flex items-center justify-center w-full rounded-lg bg-blue-900 px-6 py-4 text-white text-lg font-medium hover:bg-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg",
 
     // Header styles
-    header: "sticky top-0 z-50 bg-[#f8f8ff]/90 transition-all duration-300 ease-out",
+    header: "sticky top-0 z-50 bg-[#f8f8ff]/90 backdrop-blur-md transition-all duration-300 ease-out",
     headerLoaded: "translate-y-0 opacity-100",
     headerLoading: "translate-y-4 opacity-0",
 

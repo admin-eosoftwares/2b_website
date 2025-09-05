@@ -1,41 +1,54 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useSmoothScroll } from '../hooks/useSmoothScroll';
 
 export default function TopContactBar() {
     const [isVisible, setIsVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
+    const { handleClick } = useSmoothScroll();
+    const lastScrollYRef = useRef(0);
+
+    // This ref will track if a controlled scroll is happening.
+    const isControlledScrollRef = useRef(false);
 
     useEffect(() => {
-        // Sayfa yüklendiğinde animasyonu başlat
-        const timer = setTimeout(() => {
-            setIsLoaded(true);
-        }, 100);
-
+        const timer = setTimeout(() => setIsLoaded(true), 100);
         return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {
         const handleScroll = () => {
-            const currentScrollY = window.scrollY;
+            // If our controller is active, ignore natural scroll events.
+            if (isControlledScrollRef.current) return;
 
-            // Hide when scrolling down, show when scrolling up
-            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > lastScrollYRef.current && currentScrollY > 100) {
                 setIsVisible(false);
             } else {
                 setIsVisible(true);
             }
+            lastScrollYRef.current = currentScrollY;
+        };
 
-            setLastScrollY(currentScrollY);
+        // On "internal-scroll-start", force the bar to be visible and pause listening to scrolls.
+        const handleScrollStart = () => {
+            isControlledScrollRef.current = true;
+            setIsVisible(true);
+            // After the scroll is finished, re-enable the natural scroll listener.
+            setTimeout(() => {
+                isControlledScrollRef.current = false;
+            }, 1500);
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('internal-scroll-start', handleScrollStart);
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('internal-scroll-start', handleScrollStart);
         };
-    }, [lastScrollY]);
+    }, []);
 
     return (
         <div
@@ -59,6 +72,7 @@ export default function TopContactBar() {
                             </svg>
                             <a
                                 href="/iletisim#bize-ulasin"
+                                onClick={(e) => handleClick(e, '/iletisim#bize-ulasin')}
                                 className="text-sm text-black group-hover:text-blue-900 font-medium transition-all duration-300 transform group-hover:scale-105 hover:underline"
                             >
                                 info@2bltd.com.tr

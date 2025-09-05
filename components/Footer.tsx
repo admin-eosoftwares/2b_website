@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useSmoothScroll } from '../hooks/useSmoothScroll';
 
 const Footer: React.FC = () => {
     const currentYear = new Date().getFullYear();
     const [isLoaded, setIsLoaded] = useState(false);
+    const { handleClick } = useSmoothScroll();
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -20,7 +22,7 @@ const Footer: React.FC = () => {
             <div className="max-w-6xl mx-auto px-4 py-6 md:py-10">
                 <div className="flex flex-row gap-4 lg:gap-8 items-stretch px-8 lg:px-8">
                     {/* Logo + Social Media */}
-                    <div className="flex-1 space-y-4">
+                    <div className={`flex-1 space-y-4 transition-all duration-500 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`} style={{ transitionDelay: isLoaded ? '100ms' : '0ms' }}>
                         <div className="flex items-center">
                             <Image
                                 src="/2b_logo_sag.png"
@@ -75,10 +77,10 @@ const Footer: React.FC = () => {
                     </div>
 
                     {/* Divider */}
-                    <div className="hidden lg:block self-stretch w-0.5 bg-white/60"></div>
+                    <div className={`hidden lg:block self-stretch w-0.5 bg-white/60 transition-all duration-500 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`} style={{ transitionDelay: isLoaded ? '200ms' : '0ms' }}></div>
 
                     {/* Menu Links */}
-                    <div className="flex-1 space-y-4 hidden lg:block">
+                    <div className={`flex-1 space-y-4 hidden lg:block transition-all duration-500 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`} style={{ transitionDelay: isLoaded ? '300ms' : '0ms' }}>
                         <h3 className="font-medium text-white">Menü</h3>
                         <nav aria-label="Footer navigation">
                             <ul className="space-y-2">
@@ -122,10 +124,10 @@ const Footer: React.FC = () => {
                     </div>
 
                     {/* Divider */}
-                    <div className="self-stretch w-0.5 bg-white/60"></div>
+                    <div className={`self-stretch w-0.5 bg-white/60 transition-all duration-500 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`} style={{ transitionDelay: isLoaded ? '400ms' : '0ms' }}></div>
 
                     {/* Contact Information */}
-                    <div className="flex-1 space-y-4">
+                    <div className={`flex-1 space-y-4 transition-all duration-500 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`} style={{ transitionDelay: isLoaded ? '500ms' : '0ms' }}>
                         <h3 className="font-medium text-white">İletişim</h3>
                         <div className="space-y-2">
                             <div className="flex items-center space-x-2">
@@ -135,6 +137,7 @@ const Footer: React.FC = () => {
                                 </svg>
                                 <a
                                     href="/iletisim#bize-ulasin"
+                                    onClick={(e) => handleClick(e, '/iletisim#bize-ulasin')}
                                     className="text-sm text-white/80 hover:text-white transition-colors hover:underline"
                                 >
                                     info@2bltd.com.tr
@@ -165,7 +168,7 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Copyright */}
-            <div className="mx-4 md:mx-32 lg:mx-48 border-t-2 border-white/60 py-1 md:py-2 text-center text-xs text-white">
+            <div className={`mx-4 md:mx-32 lg:mx-48 border-t-2 border-white/60 py-1 md:py-2 text-center text-xs text-white transition-all duration-500 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`} style={{ transitionDelay: isLoaded ? '600ms' : '0ms' }}>
                 © {currentYear} 2B Global Enerji - Tüm hakları saklıdır. | Geliştirici: E&O Softwares
             </div>
         </footer>

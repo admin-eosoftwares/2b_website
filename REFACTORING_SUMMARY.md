@@ -43,7 +43,7 @@ Header component'i şu alt-componentlere bölündü:
 
 ## 📁 Yeni Dosya Yapısı
 
-```
+```text
 components/
 ├── Header.tsx (refactored)
 ├── NavLink.tsx (new)

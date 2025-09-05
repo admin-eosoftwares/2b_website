@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { MobileMenuProvider } from "../contexts/MobileMenuContext";
 import PageWrapper from "@/components/PageWrapper";
 import MobileMenu from "@/components/MobileMenu";
+import ScrollHandler from "../components/ScrollHandler";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
             <Footer />
           </PageWrapper>
           <MobileMenu />
+          <ScrollHandler />
         </MobileMenuProvider>
       </body>
     </html>

@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export default function Iletisim() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [isHighlighted, setIsHighlighted] = useState(false);
+    const [isScrolling, setIsScrolling] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -14,45 +15,46 @@ export default function Iletisim() {
         return () => clearTimeout(timer);
     }, []);
 
+    const triggerAnimation = useCallback(() => {
+        setIsScrolling(true);
+        setTimeout(() => {
+            setIsScrolling(false);
+        }, 1000); // Animation duration
+    }, []);
+
     useEffect(() => {
-        // Check if we have a hash in the URL
+        // For navigation from other pages, based on URL hash
         const hash = window.location.hash;
         if (hash === '#bize-ulasin') {
-            // Add a small delay to ensure the page is loaded
-            setTimeout(() => {
-                // Scroll to the element with offset for header
-                const element = document.getElementById('bize-ulasin');
-                if (element) {
-                    const headerHeight = 100; // Adjust this value based on your header height
-                    const elementPosition = element.offsetTop - headerHeight;
-                    window.scrollTo({
-                        top: elementPosition,
-                        behavior: 'smooth'
-                    });
-
-                    // Trigger the highlight animation
-                    setIsHighlighted(true);
-
-                    // Remove the highlight after animation completes
-                    setTimeout(() => {
-                        setIsHighlighted(false);
-                    }, 800); // Reduced to match animation duration
-                }
-            }, 500);
+            setTimeout(triggerAnimation, 500); // Delay to sync with scroll
         }
-    }, []);
+
+        // For same-page navigation, based on custom event
+        const handleInternalNav = (event: CustomEvent) => {
+            if (event.detail.id === 'bize-ulasin') {
+                // The delay is now handled by the hook, so we can trigger instantly.
+                triggerAnimation();
+            }
+        };
+
+        window.addEventListener('internal-nav', handleInternalNav as EventListener);
+
+        return () => {
+            window.removeEventListener('internal-nav', handleInternalNav as EventListener);
+        };
+    }, [triggerAnimation]);
 
     return (
         <div className="min-h-screen bg-[#f8f8ff]">
             <div className="container mx-auto px-4 py-16">
                 <div className="max-w-6xl mx-auto">
-                    <h1 className={`text-4xl font-bold text-blue-900 mb-8 text-center transition-all duration-600 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+                    <h1 className={`text-4xl font-bold text-blue-900 mb-8 text-center transition-all duration-600 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} ${isScrolling || isHighlighted ? 'blur-sm opacity-60' : 'blur-0 opacity-100'}`}>
                         İletişim
                     </h1>
 
                     <div className={`grid lg:grid-cols-2 gap-12 transition-all duration-600 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                         {/* İletişim Bilgileri */}
-                        <div className={`space-y-8 transition-all duration-600 ${isHighlighted ? 'blur-sm opacity-60' : 'blur-0 opacity-100'}`}>
+                        <div className={`space-y-8 transition-all duration-600 ${isScrolling || isHighlighted ? 'blur-sm opacity-60' : 'blur-0 opacity-100'}`}>
                             <div className="bg-white rounded-lg shadow-lg p-8">
                                 <h2 className="text-2xl font-semibold text-gray-800 mb-6">
                                     İletişim Bilgileri
@@ -164,9 +166,8 @@ export default function Iletisim() {
                         {/* İletişim Formu */}
                         <div
                             id="bize-ulasin"
-                            className={`bg-white rounded-lg shadow-lg p-8 transition-all duration-600 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-                                } ${isHighlighted ? 'animate-pulse scale-105 shadow-2xl z-10 relative' : 'scale-100'
-                                }`}
+                            className={`bg-white rounded-lg shadow-lg p-8 transition-all duration-800 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                                } ${isScrolling ? 'scale-105 shadow-xl' : 'scale-100'}`}
                         >
                             <h2 className="text-2xl font-semibold text-gray-800 mb-6">
                                 Bize Ulaşın
