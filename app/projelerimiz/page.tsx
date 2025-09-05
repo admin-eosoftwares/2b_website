@@ -1,14 +1,25 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import SkeletonCard from '../../components/SkeletonCard'; // Add this import
 
 export default function Projelerimiz() {
     const [isLoaded, setIsLoaded] = useState(false);
+    const [projects, setProjects] = useState<any[]>([]); // Add this state for projects
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsLoaded(true);
-        }, 200);
+            // Simulate fetching data
+            setProjects([
+                { id: 1, title: 'Güneş Enerjisi Projeleri', description: 'Büyük ölçekli güneş enerjisi santralleri ve çatı kurulumları' },
+                { id: 2, title: 'Rüzgar Enerjisi Sistemleri', description: 'Rüzgar türbinleri ve hibrit enerji sistemleri' },
+                { id: 3, title: 'Enerji Depolama Çözümleri', description: 'Batarya sistemleri ve enerji yönetim çözümleri' },
+                { id: 4, title: 'Endüstriyel Enerji Projeleri', description: 'Fabrika ve üretim tesislerinde enerji verimliliği' },
+                { id: 5, title: 'Konut Enerji Sistemleri', description: 'Ev ve rezidans projelerinde yenilenebilir enerji' },
+                { id: 6, title: 'Ticari Bina Projeleri', description: 'Ofis ve ticari binalarda enerji yönetim sistemleri' },
+            ]);
+        }, 1000); // Simulate a longer loading time
 
         return () => clearTimeout(timer);
     }, []);
@@ -32,59 +43,20 @@ export default function Projelerimiz() {
                         </p>
 
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div className="bg-gray-50 rounded-lg p-6 text-center">
-                                <h3 className="text-lg font-semibold text-blue-900 mb-2">
-                                    Güneş Enerjisi Projeleri
-                                </h3>
-                                <p className="text-gray-600 text-sm">
-                                    Büyük ölçekli güneş enerjisi santralleri ve çatı kurulumları
-                                </p>
-                            </div>
-
-                            <div className="bg-gray-50 rounded-lg p-6 text-center">
-                                <h3 className="text-lg font-semibold text-blue-900 mb-2">
-                                    Rüzgar Enerjisi Sistemleri
-                                </h3>
-                                <p className="text-gray-600 text-sm">
-                                    Rüzgar türbinleri ve hibrit enerji sistemleri
-                                </p>
-                            </div>
-
-                            <div className="bg-gray-50 rounded-lg p-6 text-center">
-                                <h3 className="text-lg font-semibold text-blue-900 mb-2">
-                                    Enerji Depolama Çözümleri
-                                </h3>
-                                <p className="text-gray-600 text-sm">
-                                    Batarya sistemleri ve enerji yönetim çözümleri
-                                </p>
-                            </div>
-
-                            <div className="bg-gray-50 rounded-lg p-6 text-center">
-                                <h3 className="text-lg font-semibold text-blue-900 mb-2">
-                                    Endüstriyel Enerji Projeleri
-                                </h3>
-                                <p className="text-gray-600 text-sm">
-                                    Fabrika ve üretim tesislerinde enerji verimliliği
-                                </p>
-                            </div>
-
-                            <div className="bg-gray-50 rounded-lg p-6 text-center">
-                                <h3 className="text-lg font-semibold text-blue-900 mb-2">
-                                    Konut Enerji Sistemleri
-                                </h3>
-                                <p className="text-gray-600 text-sm">
-                                    Ev ve rezidans projelerinde yenilenebilir enerji
-                                </p>
-                            </div>
-
-                            <div className="bg-gray-50 rounded-lg p-6 text-center">
-                                <h3 className="text-lg font-semibold text-blue-900 mb-2">
-                                    Ticari Bina Projeleri
-                                </h3>
-                                <p className="text-gray-600 text-sm">
-                                    Ofis ve ticari binalarda enerji yönetim sistemleri
-                                </p>
-                            </div>
+                            {!isLoaded ? (
+                                Array.from({ length: 6 }).map((_, index) => <SkeletonCard key={index} />)
+                            ) : (
+                                projects.map((project) => (
+                                    <div key={project.id} className="bg-gray-50 rounded-lg p-6 text-center">
+                                        <h3 className="text-lg font-semibold text-blue-900 mb-2">
+                                            {project.title}
+                                        </h3>
+                                        <p className="text-gray-600 text-sm">
+                                            {project.description}
+                                        </p>
+                                    </div>
+                                ))
+                            )}
                         </div>
                     </div>
 

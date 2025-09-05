@@ -5,9 +5,7 @@ import { UseNavigationReturn } from '../types/navigation';
 import { ANIMATION_DURATIONS } from '../constants/navigation';
 
 export const useNavigation = (): UseNavigationReturn => {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
-    const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
 
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -32,8 +30,6 @@ export const useNavigation = (): UseNavigationReturn => {
         const handleEscape = (event: KeyboardEvent) => {
             if (event.key === 'Escape') {
                 setIsAboutDropdownOpen(false);
-                setIsMobileMenuOpen(false);
-                setIsMobileAboutOpen(false);
             }
         };
 
@@ -47,33 +43,16 @@ export const useNavigation = (): UseNavigationReturn => {
     }, []);
 
     // Actions
-    const toggleMobileMenu = useCallback(() => {
-        setIsMobileMenuOpen(prev => !prev);
-    }, []);
-
-    const toggleMobileAbout = useCallback(() => {
-        setIsMobileAboutOpen(prev => !prev);
-    }, []);
-
-    const closeMobileMenu = useCallback(() => {
-        setIsMobileMenuOpen(false);
-    }, []);
-
     const closeDropdown = useCallback(() => {
         setIsAboutDropdownOpen(false);
     }, []);
 
     return {
         // State
-        isMobileMenuOpen,
         isAboutDropdownOpen,
-        isMobileAboutOpen,
         isLoaded,
 
         // Actions
-        toggleMobileMenu,
-        toggleMobileAbout,
-        closeMobileMenu,
         closeDropdown,
         setIsLoaded,
         setIsAboutDropdownOpen,

@@ -1,30 +1,40 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useNavigation } from '../hooks/useNavigation';
+import { useMobileMenu } from '../contexts/MobileMenuContext';
 import DesktopNavigation from './DesktopNavigation';
-import MobileMenu from './MobileMenu';
 import { CSS_CLASSES } from '../constants/styles';
 
 const Header = React.memo(function Header() {
     const pathname = usePathname();
     const {
-        isMobileMenuOpen,
         isAboutDropdownOpen,
-        isMobileAboutOpen,
         isLoaded,
-        toggleMobileMenu,
-        toggleMobileAbout,
-        closeMobileMenu,
         setIsAboutDropdownOpen
     } = useNavigation();
+
+    const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu();
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = window.scrollY;
+            setIsScrolled(scrollTop > 50);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const headerClasses = `
         ${CSS_CLASSES.header}
         ${isLoaded ? CSS_CLASSES.headerLoaded : CSS_CLASSES.headerLoading}
+        ${isScrolled ? 'backdrop-blur-lg bg-white/60 shadow-lg' : 'backdrop-blur-sm bg-[#f8f8ff]/90'}
     `.trim();
+
 
     return (
         <header className={headerClasses} data-testid="main-header">
@@ -78,14 +88,6 @@ const Header = React.memo(function Header() {
                         </button>
                     </div>
                 </div>
-
-                {/* Mobile Menu */}
-                <MobileMenu
-                    isOpen={isMobileMenuOpen}
-                    isMobileAboutOpen={isMobileAboutOpen}
-                    onClose={closeMobileMenu}
-                    onToggleAbout={toggleMobileAbout}
-                />
             </nav>
         </header>
     );

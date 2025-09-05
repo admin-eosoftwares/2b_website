@@ -2,7 +2,7 @@
 
 import React from 'react';
 import NavLink from './NavLink';
-import AboutDropdown from './AboutDropdown';
+import dynamic from 'next/dynamic';
 import { NAV_ITEMS, EXTERNAL_LINKS } from '../constants/navigation';
 import { CSS_CLASSES } from '../constants/styles';
 
@@ -12,6 +12,8 @@ interface DesktopNavigationProps {
     onAboutMouseEnter: () => void;
     onAboutMouseLeave: () => void;
 }
+
+const DynamicAboutDropdown = dynamic(() => import('./AboutDropdown'), { ssr: false });
 
 const DesktopNavigation = React.memo(function DesktopNavigation({
     pathname,
@@ -31,7 +33,7 @@ const DesktopNavigation = React.memo(function DesktopNavigation({
             ))}
 
             {/* About Dropdown */}
-            <AboutDropdown
+            <DynamicAboutDropdown
                 isOpen={isAboutDropdownOpen}
                 onMouseEnter={onAboutMouseEnter}
                 onMouseLeave={onAboutMouseLeave}
