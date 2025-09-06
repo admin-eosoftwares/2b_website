@@ -8,6 +8,8 @@ import { MobileMenuProvider } from "../contexts/MobileMenuContext";
 import PageWrapper from "@/components/PageWrapper";
 import MobileMenu from "@/components/MobileMenu";
 import ScrollHandler from "../components/ScrollHandler";
+import ErrorBoundary from "../components/ErrorBoundary";
+import SafeComponent, { SafeComponentFallbacks } from "../components/SafeComponent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,19 +21,45 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={`${inter.className} min-h-screen flex flex-col`}>
-        <MobileMenuProvider>
-          <PageWrapper>
-            <Loading />
-            <TopContactBar />
-            <Header />
-            <main className="flex-1">
-              {children}
-            </main>
-            <Footer />
-          </PageWrapper>
-          <MobileMenu />
-          <ScrollHandler />
-        </MobileMenuProvider>
+        <ErrorBoundary>
+          <MobileMenuProvider>
+            <PageWrapper>
+              <Loading />
+              <SafeComponent
+                componentName="TopContactBar"
+                fallback={<div className="hidden md:block bg-[#f8f8ff]/80 backdrop-blur border-b border-gray-200 h-16"></div>}
+              >
+                <TopContactBar />
+              </SafeComponent>
+
+              <SafeComponent
+                componentName="Header"
+                fallback={SafeComponentFallbacks.Header}
+              >
+                <Header />
+              </SafeComponent>
+
+              <main className="flex-1">
+                {children}
+              </main>
+
+              <SafeComponent
+                componentName="Footer"
+                fallback={SafeComponentFallbacks.Footer}
+              >
+                <Footer />
+              </SafeComponent>
+            </PageWrapper>
+
+            <SafeComponent componentName="MobileMenu">
+              <MobileMenu />
+            </SafeComponent>
+
+            <SafeComponent componentName="ScrollHandler">
+              <ScrollHandler />
+            </SafeComponent>
+          </MobileMenuProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );
