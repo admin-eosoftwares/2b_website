@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <PageErrorBoundary pageName="Ana Sayfa">
       <div className="min-h-screen bg-[#f8f8ff]">
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-4 py-8">
           <div className="max-w-6xl mx-auto">
             <h1 className={`text-4xl font-bold text-blue-900 mb-8 text-center transition-all duration-700 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
               Hoş Geldiniz

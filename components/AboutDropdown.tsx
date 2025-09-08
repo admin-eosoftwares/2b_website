@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import { ABOUT_DROPDOWN_ITEMS } from '../constants/navigation';
 import { CSS_CLASSES } from '../constants/styles';
+import { useSmoothScroll } from '../hooks/useSmoothScroll';
 
 interface AboutDropdownProps {
     isOpen: boolean;
@@ -20,6 +21,7 @@ const AboutDropdown = React.memo(function AboutDropdown({
     pathname
 }: AboutDropdownProps) {
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const { handleClick } = useSmoothScroll();
 
     const linkClasses = `
     ${CSS_CLASSES.navLink}
@@ -67,6 +69,7 @@ const AboutDropdown = React.memo(function AboutDropdown({
                                 href={item.href}
                                 className={`${CSS_CLASSES.dropdownItem} ${CSS_CLASSES.focus}`}
                                 data-testid={`dropdown-item-${item.key}`}
+                                onClick={(e) => handleClick(e, item.href)}
                             >
                                 {item.label}
                             </a>

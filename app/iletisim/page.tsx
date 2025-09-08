@@ -148,7 +148,7 @@ export default function Iletisim() {
     return (
         <PageErrorBoundary pageName="İletişim">
             <div className="min-h-screen bg-[#f8f8ff]">
-                <div className="container mx-auto px-4 py-16">
+                <div className="container mx-auto px-4 py-8">
                     <div className="max-w-6xl mx-auto">
                         <h1 className={`text-4xl font-bold text-blue-900 mb-8 text-center transition-all duration-600 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} ${isScrolling || isHighlighted ? 'blur-sm opacity-60' : 'blur-0 opacity-100'}`}>
                             İletişim

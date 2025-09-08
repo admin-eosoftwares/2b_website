@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
-/* Scrollbar'ı tamamen gizle */
+/* Scrollbar'ı tamamen gizle ve smooth scroll ekle */
 html {
     scrollbar-width: none;
     /* Firefox için */
     -ms-overflow-style: none;
     /* IE ve Edge için */
+    scroll-behavior: smooth;
 }
 
 html::-webkit-scrollbar {
@@ -71,4 +72,33 @@ body {
     100% {
         transform: scale(1.1);
     }
+}
+
+/* Slider animasyonları */
+@keyframes slideRight {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.slide-right {
+    animation: slideRight 0.5s ease-in-out;
+}
+
+.slide-left {
+    animation: slideLeft 0.5s ease-in-out;
 }
