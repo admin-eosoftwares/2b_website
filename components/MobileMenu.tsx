@@ -108,28 +108,35 @@ export default function MobileMenu() {
 
                         {/* Mobile About Section */}
                         <div data-testid="mobile-about-section">
-                            <button
-                                type="button"
-                                className={`w-full flex items-center justify-between py-4 text-lg font-medium text-gray-700 hover:text-blue-700 hover:bg-blue-50/50 transition-all duration-200 border-b border-blue-900/20 rounded-lg ${CSS_CLASSES.focus}`}
-                                onClick={toggleMobileAbout}
-                                aria-expanded={isMobileAboutOpen}
-                                data-testid="mobile-about-toggle"
-                            >
-                                <div className="flex items-center">
+                            <div className="flex items-center py-4 text-lg font-medium text-gray-700 border-b border-blue-900/20 rounded-lg">
+                                <a
+                                    href="/hakkimizda"
+                                    className={`flex items-center flex-1 py-2 text-gray-700 hover:text-blue-700 hover:bg-blue-50/50 transition-all duration-200 rounded-lg ${CSS_CLASSES.focus}`}
+                                    onClick={closeMobileMenu}
+                                    data-testid="mobile-about-link"
+                                >
                                     <svg className="w-5 h-5 mr-3 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" />
                                     </svg>
                                     <span className="font-medium">Hakkımızda</span>
-                                </div>
-                                <svg
-                                    className={`h-5 w-5 transition-transform duration-200 ${isMobileAboutOpen ? 'rotate-180' : ''}`}
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
+                                </a>
+                                <button
+                                    type="button"
+                                    className={`p-2 text-gray-700 hover:text-blue-700 hover:bg-blue-50/50 transition-all duration-200 rounded-lg ${CSS_CLASSES.focus}`}
+                                    onClick={toggleMobileAbout}
+                                    aria-expanded={isMobileAboutOpen}
+                                    data-testid="mobile-about-toggle"
                                 >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
+                                    <svg
+                                        className={`h-5 w-5 transition-transform duration-200 ${isMobileAboutOpen ? 'rotate-180' : ''}`}
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                            </div>
 
                             <div className={aboutSubmenuClasses}>
                                 <div className="bg-blue-50/30 rounded-lg overflow-hidden">

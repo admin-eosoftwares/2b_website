@@ -87,7 +87,7 @@ export default function Hakkimizda() {
 
         const autoMobileSlide = setInterval(() => {
             setCurrentMobileSlide((prev) => (prev + 1) % mobileSlides.length);
-        }, 4000);
+        }, 3000);
 
         return () => clearInterval(autoMobileSlide);
     }, [mobileSlides.length, isHovered]);

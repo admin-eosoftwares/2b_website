@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import PageErrorBoundary from '../components/PageErrorBoundary';
+import BrandsSlider from '../components/BrandsSlider';
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -33,7 +34,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className={`grid md:grid-cols-3 gap-8 transition-all duration-500 ease-out delay-200 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+            <div className={`grid md:grid-cols-3 gap-8 mb-8 transition-all duration-500 ease-out delay-200 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
               <div className="bg-white rounded-lg shadow-lg p-6 text-center">
                 <h3 className="text-xl font-semibold text-blue-900 mb-4">
                   Kaliteli Hizmet
@@ -60,6 +61,14 @@ export default function Home() {
                   Alanında uzman ekibimizle hizmet veriyoruz.
                 </p>
               </div>
+            </div>
+
+            {/* Markalarımız Bölümü */}
+            <div className={`mb-8 transition-all duration-500 ease-out delay-300 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+              <h2 className="text-2xl font-semibold text-blue-900 mb-6 text-center">
+                Markalarımız
+              </h2>
+              <BrandsSlider />
             </div>
           </div>
         </div>
