@@ -72,9 +72,9 @@ export default function BrandsSlider() {
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-lg p-4">
+        <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl shadow-xl p-6 border border-gray-100">
             <div
-                className="flex items-center gap-2"
+                className="flex items-center gap-4"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
@@ -82,9 +82,9 @@ export default function BrandsSlider() {
                 {slides.length > 1 && (
                     <button
                         onClick={prevSlide}
-                        className="flex-shrink-0 bg-transparent text-gray-300 p-1 rounded-full hover:bg-blue-900 hover:text-white transition-all duration-300 hidden md:block"
+                        className="flex-shrink-0 bg-transparent text-gray-600 p-3 rounded-full hover:bg-blue-900 hover:text-white hover:shadow-lg transition-all duration-300 hidden md:block"
                     >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
@@ -94,7 +94,7 @@ export default function BrandsSlider() {
                 {mobileSlides.length > 1 && (
                     <button
                         onClick={prevMobileSlide}
-                        className="flex-shrink-0 bg-transparent text-gray-300 p-1 rounded-full hover:bg-blue-900 hover:text-white transition-all duration-300 md:hidden"
+                        className="flex-shrink-0 bg-transparent text-gray-600 p-2 rounded-full hover:bg-blue-900 hover:text-white hover:shadow-lg transition-all duration-300 md:hidden"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -113,23 +113,24 @@ export default function BrandsSlider() {
                     >
                         {slides.map((slide, slideIndex) => (
                             <div key={slideIndex} className="w-full flex-shrink-0">
-                                <div className="grid grid-cols-3 gap-6 items-center justify-items-center">
+                                <div className="grid grid-cols-3 gap-8 items-center justify-items-center">
                                     {slide.map((brand, brandIndex) => (
                                         <div
                                             key={brandIndex}
-                                            className="group flex items-center justify-center p-4 bg-transparent transition-all duration-300 w-full h-40 hover:scale-105"
+                                            className="group flex justify-center items-center p-6 bg-transparent transition-all duration-300 w-full h-44 hover:scale-105"
                                         >
                                             <img
                                                 src={brand.logo}
                                                 alt={`${brand.name} Logo`}
-                                                className={`w-auto object-contain transition-transform duration-300 group-hover:scale-110 ${brand.name === 'Orbus'
-                                                    ? 'h-20 scale-110'
-                                                    : 'h-16'
+                                                className={`w-auto object-contain transition-transform duration-300 group-hover:scale-110 ${brand.name === 'Varta' ? 'h-10' :
+                                                    brand.name === 'Tommatech' ? 'h-24' :
+                                                        brand.name === 'Avec' ? 'h-11' : 'h-20'
                                                     }`}
                                                 style={{
                                                     imageRendering: 'crisp-edges',
                                                     filter: 'contrast(1.1) brightness(1.05)',
-                                                    backfaceVisibility: 'hidden'
+                                                    backfaceVisibility: 'hidden',
+                                                    transform: brand.name === 'Avec' ? 'translate(4px, -3px)' : 'none'
                                                 }}
                                             />
                                         </div>
@@ -151,20 +152,25 @@ export default function BrandsSlider() {
                     >
                         {mobileSlides.map((slide, slideIndex) => (
                             <div key={slideIndex} className="w-full flex-shrink-0">
-                                <div className="grid grid-cols-2 gap-4 items-center justify-items-center">
+                                <div className="grid grid-cols-2 gap-6 items-center justify-items-center">
                                     {slide.map((brand, brandIndex) => (
                                         <div
                                             key={brandIndex}
-                                            className="group flex items-center justify-center p-4 bg-transparent transition-all duration-300 w-full h-32 hover:scale-105"
+                                            className="group flex justify-center items-center p-6 bg-transparent transition-all duration-300 w-full h-36 hover:scale-105"
                                         >
                                             <img
                                                 src={brand.logo}
                                                 alt={`${brand.name} Logo`}
-                                                className="w-auto object-contain transition-transform duration-300 group-hover:scale-110 h-16"
+                                                className={`w-auto object-contain transition-transform duration-300 group-hover:scale-110 max-w-full ${brand.name === 'CW Enerji' ? 'h-30' :
+                                                    brand.name === 'Varta' ? 'h-10' :
+                                                        brand.name === 'Tommatech' ? 'h-20' :
+                                                            brand.name === 'Avec' ? 'h-9' : 'h-16'
+                                                    }`}
                                                 style={{
                                                     imageRendering: 'crisp-edges',
                                                     filter: 'contrast(1.1) brightness(1.05)',
-                                                    backfaceVisibility: 'hidden'
+                                                    backfaceVisibility: 'hidden',
+                                                    transform: brand.name === 'Avec' ? 'translate(4px, -3px)' : 'none'
                                                 }}
                                             />
                                         </div>
@@ -179,9 +185,9 @@ export default function BrandsSlider() {
                 {slides.length > 1 && (
                     <button
                         onClick={nextSlide}
-                        className="flex-shrink-0 bg-transparent text-gray-300 p-1 rounded-full hover:bg-blue-900 hover:text-white transition-all duration-300 hidden md:block"
+                        className="flex-shrink-0 bg-transparent text-gray-600 p-3 rounded-full hover:bg-blue-900 hover:text-white hover:shadow-lg transition-all duration-300 hidden md:block"
                     >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                     </button>
@@ -191,7 +197,7 @@ export default function BrandsSlider() {
                 {mobileSlides.length > 1 && (
                     <button
                         onClick={nextMobileSlide}
-                        className="flex-shrink-0 bg-transparent text-gray-300 p-1 rounded-full hover:bg-blue-900 hover:text-white transition-all duration-300 md:hidden"
+                        className="flex-shrink-0 bg-transparent text-gray-600 p-2 rounded-full hover:bg-blue-900 hover:text-white hover:shadow-lg transition-all duration-300 md:hidden"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -201,17 +207,17 @@ export default function BrandsSlider() {
             </div>
 
             {/* Dots Indicator */}
-            <div className="flex justify-center mt-2 space-x-2">
+            <div className="flex justify-center mt-6 space-x-3">
                 {/* Desktop dots */}
                 {slides.length > 1 && (
-                    <div className="hidden md:flex space-x-2">
+                    <div className="hidden md:flex space-x-3">
                         {slides.map((_, index) => (
                             <button
                                 key={index}
                                 onClick={() => setCurrentSlide(index)}
-                                className={`h-0.5 transition-all duration-300 ${index === currentSlide
-                                    ? 'w-6 bg-blue-900'
-                                    : 'w-3 bg-gray-300 hover:bg-gray-400'
+                                className={`h-2 rounded-full transition-all duration-300 ${index === currentSlide
+                                    ? 'w-8 bg-blue-900 shadow-md'
+                                    : 'w-2 bg-gray-300 hover:bg-blue-900 hover:w-3'
                                     }`}
                             />
                         ))}
@@ -220,14 +226,14 @@ export default function BrandsSlider() {
 
                 {/* Mobile dots */}
                 {mobileSlides.length > 1 && (
-                    <div className="flex md:hidden space-x-2">
+                    <div className="flex md:hidden space-x-3">
                         {mobileSlides.map((_, index) => (
                             <button
                                 key={index}
                                 onClick={() => setCurrentMobileSlide(index)}
-                                className={`h-0.5 transition-all duration-300 ${index === currentMobileSlide
-                                    ? 'w-6 bg-blue-900'
-                                    : 'w-3 bg-gray-300 hover:bg-gray-400'
+                                className={`h-2 rounded-full transition-all duration-300 ${index === currentMobileSlide
+                                    ? 'w-8 bg-blue-900 shadow-md'
+                                    : 'w-2 bg-gray-300 hover:bg-blue-900 hover:w-3'
                                     }`}
                             />
                         ))}
