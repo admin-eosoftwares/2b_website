@@ -6,7 +6,8 @@ export const NAV_ITEMS = [
 ] as const;
 
 export const ABOUT_DROPDOWN_ITEMS = [
-    { href: '/hakkimizda#biz-kimiz', label: 'Biz kimiz?', key: 'about' },
+    { href: '/hakkimizda#biz-kimiz', label: 'Biz Kimiz?', key: 'about' },
+    { href: '/hakkimizda#yolculugumuz', label: 'Yolculuğumuz', key: 'journey' },
     { href: '/hakkimizda#vizyon-misyon', label: 'Vizyon & Misyon', key: 'vision' },
     { href: '/hakkimizda#markalarimiz', label: 'Markalarımız', key: 'brands' }
 ] as const;
