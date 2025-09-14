@@ -169,7 +169,7 @@ const Footer: React.FC = () => {
 
             {/* Copyright */}
             <div className={`mx-4 md:mx-32 lg:mx-48 border-t-2 border-white/60 py-1 md:py-2 text-center text-xs text-white transition-all duration-500 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`} style={{ transitionDelay: isLoaded ? '600ms' : '0ms' }}>
-                © {currentYear} 2B Global Enerji - Tüm hakları saklıdır. | Geliştirici: E&O Softwares
+                © {currentYear} 2B Global Enerji - Tüm hakları saklıdır. | Geliştirici: <a href="https://www.instagram.com/oktay_ispir?igsh=Mmk4dWVkZXd2cmlw&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-all duration-300 underline hover:scale-110 hover:font-bold">Oktay İspir</a>
             </div>
         </footer>
     );
