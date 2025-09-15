@@ -1062,12 +1062,11 @@ export default function Projelerimiz() {
                             ref={realProjectRef}
                             className={`mb-8 transition-all duration-200 ease-out scroll-mt-24 ${realProjectVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                         >
-
                             <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 items-center">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 items-center">
                                     {/* Sol taraf - Fotoğraf Slider */}
                                     <div className="relative">
-                                        <div className="relative h-64 lg:h-80 aspect-video bg-gray-100 overflow-hidden rounded-lg">
+                                        <div className="relative aspect-video bg-gray-100 overflow-hidden rounded-lg">
                                             {/* Fotoğraf Slider */}
                                             <div className="relative w-full h-full overflow-hidden">
                                                 {realProject.images.map((image, index) => {
@@ -1152,8 +1151,8 @@ export default function Projelerimiz() {
                                     </div>
 
                                     {/* Sağ taraf - Proje Detayları */}
-                                    <div className="flex flex-col justify-start lg:h-80">
-                                        <div className="mb-4 min-h-[120px]">
+                                    <div className="flex flex-col justify-center">
+                                        <div className="mb-4">
                                             <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 leading-tight flex items-center">
                                                 <svg className="w-7 h-7 lg:w-8 lg:h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -1236,10 +1235,10 @@ export default function Projelerimiz() {
                             className={`mb-8 transition-all duration-200 ease-out scroll-mt-24 ${secondProjectVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                         >
                             <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 items-center">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 items-center">
                                     {/* Sol taraf - Fotoğraf Slider */}
                                     <div className="relative">
-                                        <div className="relative h-64 lg:h-80 aspect-video bg-gray-100 overflow-hidden rounded-lg">
+                                        <div className="relative aspect-video bg-gray-100 overflow-hidden rounded-lg">
                                             {/* Fotoğraf Slider */}
                                             <div className="relative w-full h-full overflow-hidden">
                                                 {secondProject.images.map((image, index) => {
@@ -1324,8 +1323,8 @@ export default function Projelerimiz() {
                                     </div>
 
                                     {/* Sağ taraf - Proje Detayları */}
-                                    <div className="flex flex-col justify-start lg:h-80">
-                                        <div className="mb-4 min-h-[120px]">
+                                    <div className="flex flex-col justify-center">
+                                        <div className="mb-4">
                                             <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 leading-tight flex items-center">
                                                 <svg className="w-7 h-7 lg:w-8 lg:h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -1408,10 +1407,10 @@ export default function Projelerimiz() {
                             className={`mb-8 transition-all duration-200 ease-out scroll-mt-24 ${thirdProjectVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                         >
                             <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 items-center">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 items-center">
                                     {/* Sol taraf - Fotoğraf Slider */}
                                     <div className="relative">
-                                        <div className="relative h-64 lg:h-80 aspect-video bg-gray-100 overflow-hidden rounded-lg">
+                                        <div className="relative aspect-video bg-gray-100 overflow-hidden rounded-lg">
                                             {/* Fotoğraf Slider */}
                                             <div className="relative w-full h-full overflow-hidden">
                                                 {thirdProject.images.map((image, index) => {
@@ -1496,8 +1495,8 @@ export default function Projelerimiz() {
                                     </div>
 
                                     {/* Sağ taraf - Proje Detayları */}
-                                    <div className="flex flex-col justify-start lg:h-80">
-                                        <div className="mb-4 min-h-[120px]">
+                                    <div className="flex flex-col justify-center">
+                                        <div className="mb-4">
                                             <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 leading-tight flex items-center">
                                                 <svg className="w-7 h-7 lg:w-8 lg:h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -1580,10 +1579,10 @@ export default function Projelerimiz() {
                             className={`mb-8 transition-all duration-200 ease-out scroll-mt-24 ${fourthProjectVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                         >
                             <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 items-center">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 items-center">
                                     {/* Sol taraf - Fotoğraf Slider */}
                                     <div className="relative">
-                                        <div className="relative h-64 lg:h-80 aspect-video bg-gray-100 overflow-hidden rounded-lg">
+                                        <div className="relative aspect-video bg-gray-100 overflow-hidden rounded-lg">
                                             {/* Fotoğraf Slider */}
                                             <div className="relative w-full h-full overflow-hidden">
                                                 {fourthProject.images.map((image, index) => {
@@ -1668,8 +1667,8 @@ export default function Projelerimiz() {
                                     </div>
 
                                     {/* Sağ taraf - Proje Detayları */}
-                                    <div className="flex flex-col justify-start lg:h-80">
-                                        <div className="mb-4 min-h-[120px]">
+                                    <div className="flex flex-col justify-center">
+                                        <div className="mb-4">
                                             <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 leading-tight flex items-center">
                                                 <svg className="w-7 h-7 lg:w-8 lg:h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -1752,10 +1751,10 @@ export default function Projelerimiz() {
                             className={`mb-8 transition-all duration-200 ease-out scroll-mt-24 ${fifthProjectVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                         >
                             <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 items-center">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 items-center">
                                     {/* Sol taraf - Fotoğraf Slider */}
                                     <div className="relative">
-                                        <div className="relative h-64 lg:h-80 aspect-video bg-gray-100 overflow-hidden rounded-lg">
+                                        <div className="relative aspect-video bg-gray-100 overflow-hidden rounded-lg">
                                             {/* Fotoğraf Slider */}
                                             <div className="relative w-full h-full overflow-hidden">
                                                 {fifthProject.images.map((image, index) => {
@@ -1840,8 +1839,8 @@ export default function Projelerimiz() {
                                     </div>
 
                                     {/* Sağ taraf - Proje Detayları */}
-                                    <div className="flex flex-col justify-start lg:h-80">
-                                        <div className="mb-4 min-h-[120px]">
+                                    <div className="flex flex-col justify-center">
+                                        <div className="mb-4">
                                             <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 leading-tight flex items-center">
                                                 <svg className="w-7 h-7 lg:w-8 lg:h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -1924,10 +1923,10 @@ export default function Projelerimiz() {
                             className={`mb-8 transition-all duration-200 ease-out scroll-mt-24 ${sixthProjectVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                         >
                             <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 items-center">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 items-center">
                                     {/* Sol taraf - Fotoğraf Slider */}
                                     <div className="relative">
-                                        <div className="relative h-64 lg:h-80 aspect-video bg-gray-100 overflow-hidden rounded-lg">
+                                        <div className="relative aspect-video bg-gray-100 overflow-hidden rounded-lg">
                                             {/* Fotoğraf Slider */}
                                             <div className="relative w-full h-full overflow-hidden">
                                                 {sixthProject.images.map((image, index) => {
@@ -2012,8 +2011,8 @@ export default function Projelerimiz() {
                                     </div>
 
                                     {/* Sağ taraf - Proje Detayları */}
-                                    <div className="flex flex-col justify-start lg:h-80">
-                                        <div className="mb-4 min-h-[120px]">
+                                    <div className="flex flex-col justify-center">
+                                        <div className="mb-4">
                                             <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 leading-tight flex items-center">
                                                 <svg className="w-7 h-7 lg:w-8 lg:h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -2096,9 +2095,9 @@ export default function Projelerimiz() {
                             className={`mb-8 transition-all duration-200 ease-out scroll-mt-24 ${seventhProjectVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                         >
                             <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 items-center">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 items-center">
                                     <div className="relative">
-                                        <div className="relative h-64 lg:h-80 aspect-video bg-gray-100 overflow-hidden rounded-lg">
+                                        <div className="relative aspect-video bg-gray-100 overflow-hidden rounded-lg">
                                             <div className="relative w-full h-full overflow-hidden">
                                                 {seventhProject.images.map((image, index) => {
                                                     const isActive = index === seventhProjectImageIndex;
@@ -2171,8 +2170,8 @@ export default function Projelerimiz() {
                                             </button>
                                         </div>
                                     </div>
-                                    <div className="flex flex-col justify-start lg:h-80">
-                                        <div className="mb-4 min-h-[120px]">
+                                    <div className="flex flex-col justify-center">
+                                        <div className="mb-4">
                                             <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 leading-tight flex items-center">
                                                 <svg className="w-7 h-7 lg:w-8 lg:h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -2247,9 +2246,9 @@ export default function Projelerimiz() {
                             className={`mb-8 transition-all duration-200 ease-out scroll-mt-24 ${eighthProjectVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                         >
                             <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 items-center">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 items-center">
                                     <div className="relative">
-                                        <div className="relative h-64 lg:h-80 aspect-video bg-gray-100 overflow-hidden rounded-lg">
+                                        <div className="relative aspect-video bg-gray-100 overflow-hidden rounded-lg">
                                             <div className="relative w-full h-full overflow-hidden">
                                                 {eighthProject.images.map((image, index) => {
                                                     const isActive = index === eighthProjectImageIndex;
@@ -2322,8 +2321,8 @@ export default function Projelerimiz() {
                                             </button>
                                         </div>
                                     </div>
-                                    <div className="flex flex-col justify-start lg:h-80">
-                                        <div className="mb-4 min-h-[120px]">
+                                    <div className="flex flex-col justify-center">
+                                        <div className="mb-4">
                                             <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 leading-tight flex items-center">
                                                 <svg className="w-7 h-7 lg:w-8 lg:h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -2398,9 +2397,9 @@ export default function Projelerimiz() {
                             className={`mb-8 transition-all duration-200 ease-out scroll-mt-24 ${ninthProjectVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                         >
                             <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 items-center">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 items-center">
                                     <div className="relative">
-                                        <div className="relative h-64 lg:h-80 aspect-video bg-gray-100 overflow-hidden rounded-lg">
+                                        <div className="relative aspect-video bg-gray-100 overflow-hidden rounded-lg">
                                             <div className="relative w-full h-full overflow-hidden">
                                                 {ninthProject.images.map((image, index) => {
                                                     const isActive = index === ninthProjectImageIndex;
@@ -2473,8 +2472,8 @@ export default function Projelerimiz() {
                                             </button>
                                         </div>
                                     </div>
-                                    <div className="flex flex-col justify-start lg:h-80">
-                                        <div className="mb-4 min-h-[120px]">
+                                    <div className="flex flex-col justify-center">
+                                        <div className="mb-4">
                                             <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 leading-tight flex items-center">
                                                 <svg className="w-7 h-7 lg:w-8 lg:h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -2549,9 +2548,9 @@ export default function Projelerimiz() {
                             className={`mb-8 transition-all duration-200 ease-out scroll-mt-24 ${tenthProjectVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                         >
                             <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 items-center">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 items-center">
                                     <div className="relative">
-                                        <div className="relative h-64 lg:h-80 aspect-video bg-gray-100 overflow-hidden rounded-lg">
+                                        <div className="relative aspect-video bg-gray-100 overflow-hidden rounded-lg">
                                             <div className="relative w-full h-full overflow-hidden">
                                                 {tenthProject.images.map((image, index) => {
                                                     const isActive = index === tenthProjectImageIndex;
@@ -2624,8 +2623,8 @@ export default function Projelerimiz() {
                                             </button>
                                         </div>
                                     </div>
-                                    <div className="flex flex-col justify-start lg:h-80">
-                                        <div className="mb-4 min-h-[120px]">
+                                    <div className="flex flex-col justify-center">
+                                        <div className="mb-4">
                                             <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 leading-tight flex items-center">
                                                 <svg className="w-7 h-7 lg:w-8 lg:h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -2713,9 +2712,9 @@ export default function Projelerimiz() {
                                     className={`mb-8 transition-all duration-200 ease-out scroll-mt-24 ${projectVisibles[index] ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                                 >
                                     <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-                                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-6 items-center">
+                                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 items-center">
                                             <div className="relative">
-                                                <div className="relative h-64 lg:h-80 aspect-video bg-gray-100 overflow-hidden rounded-lg">
+                                                <div className="relative aspect-video bg-gray-100 overflow-hidden rounded-lg">
                                                     <div className="relative w-full h-full overflow-hidden">
                                                         {project.images.map((image, imgIndex) => {
                                                             const isActive = imgIndex === projectImageIndexes[index];
@@ -2788,8 +2787,8 @@ export default function Projelerimiz() {
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div className="flex flex-col justify-start lg:h-80">
-                                                <div className="mb-4 min-h-[120px]">
+                                            <div className="flex flex-col justify-center">
+                                                <div className="mb-4">
                                                     <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 leading-tight flex items-center">
                                                         <svg className="w-7 h-7 lg:w-8 lg:h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
