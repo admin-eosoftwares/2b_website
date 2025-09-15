@@ -2,13 +2,7 @@
 
 import { useEffect } from 'react';
 
-interface PerformanceMetrics {
-    fcp: number; // First Contentful Paint
-    lcp: number; // Largest Contentful Paint
-    fid: number; // First Input Delay
-    cls: number; // Cumulative Layout Shift
-    ttfb: number; // Time to First Byte
-}
+// Removed unused PerformanceMetrics interface
 
 export default function PerformanceMonitor() {
     useEffect(() => {
@@ -53,7 +47,7 @@ export default function PerformanceMonitor() {
             if ('PerformanceObserver' in window) {
                 const observer = new PerformanceObserver((list) => {
                     for (const entry of list.getEntries()) {
-                        const fidEntry = entry as any;
+                        const fidEntry = entry as PerformanceEntry & { processingStart?: number };
                         if (fidEntry.processingStart && fidEntry.startTime) {
                             sendToAnalytics('FID', fidEntry.processingStart - fidEntry.startTime);
                         }
@@ -67,8 +61,9 @@ export default function PerformanceMonitor() {
                 let clsValue = 0;
                 const observer = new PerformanceObserver((list) => {
                     for (const entry of list.getEntries()) {
-                        if (!(entry as any).hadRecentInput) {
-                            clsValue += (entry as any).value;
+                        const layoutShiftEntry = entry as PerformanceEntry & { hadRecentInput?: boolean; value?: number };
+                        if (!layoutShiftEntry.hadRecentInput && layoutShiftEntry.value) {
+                            clsValue += layoutShiftEntry.value;
                         }
                     }
                     sendToAnalytics('CLS', clsValue);
@@ -83,7 +78,7 @@ export default function PerformanceMonitor() {
                 const observer = new PerformanceObserver((list) => {
                     for (const entry of list.getEntries()) {
                         if (entry.entryType === 'navigation') {
-                            const navEntry = entry as any;
+                            const navEntry = entry as PerformanceEntry & { responseStart?: number; requestStart?: number };
                             if (navEntry.responseStart && navEntry.requestStart) {
                                 const ttfb = navEntry.responseStart - navEntry.requestStart;
                                 sendToAnalytics('TTFB', ttfb);

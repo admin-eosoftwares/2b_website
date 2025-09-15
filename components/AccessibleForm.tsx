@@ -1,13 +1,22 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+
+interface FormData {
+    name: string;
+    email: string;
+    phone: string;
+    subject: string;
+    message: string;
+    [key: string]: string;
+}
 
 interface AccessibleFormProps {
-    onSubmit: (data: any) => void;
+    onSubmit: (data: FormData) => void;
     isSubmitting: boolean;
     submitStatus: 'idle' | 'success' | 'error';
     errors: { [key: string]: string };
-    formData: any;
+    formData: FormData;
     onInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
@@ -19,7 +28,7 @@ export default function AccessibleForm({
     formData,
     onInputChange
 }: AccessibleFormProps) {
-    const [focusedField, setFocusedField] = useState<string | null>(null);
+    // Removed unused focusedField state
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -118,15 +127,15 @@ export default function AccessibleForm({
                         type={field.type}
                         value={formData[field.name] || ''}
                         onChange={onInputChange}
-                        onFocus={() => setFocusedField(field.name)}
-                        onBlur={() => setFocusedField(null)}
+                        onFocus={() => { }}
+                        onBlur={() => { }}
                         required={field.required}
                         aria-required={field.required}
                         aria-describedby={`${getDescriptionId(field.name)} ${errors[field.name] ? getErrorId(field.name) : ''}`}
                         aria-invalid={!!errors[field.name]}
                         className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${errors[field.name]
-                                ? 'border-red-300 bg-red-50'
-                                : 'border-gray-300 bg-white'
+                            ? 'border-red-300 bg-red-50'
+                            : 'border-gray-300 bg-white'
                             }`}
                         placeholder={field.description}
                     />
@@ -171,16 +180,16 @@ export default function AccessibleForm({
                     name="message"
                     value={formData.message || ''}
                     onChange={onInputChange}
-                    onFocus={() => setFocusedField('message')}
-                    onBlur={() => setFocusedField(null)}
+                    onFocus={() => { }}
+                    onBlur={() => { }}
                     required
                     aria-required
                     aria-describedby={`message-description ${errors.message ? 'message-error' : ''}`}
                     aria-invalid={!!errors.message}
                     rows={5}
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical ${errors.message
-                            ? 'border-red-300 bg-red-50'
-                            : 'border-gray-300 bg-white'
+                        ? 'border-red-300 bg-red-50'
+                        : 'border-gray-300 bg-white'
                         }`}
                     placeholder="Mesajınızı buraya yazınız..."
                 />
@@ -213,8 +222,8 @@ export default function AccessibleForm({
                 disabled={isSubmitting}
                 aria-describedby="submit-description"
                 className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 ${isSubmitting
-                        ? 'bg-gray-400 cursor-not-allowed'
-                        : 'bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300'
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300'
                     } text-white focus:outline-none focus:ring-2`}
             >
                 {isSubmitting ? (
