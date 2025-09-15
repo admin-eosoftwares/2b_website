@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import ErrorBoundary from './ErrorBoundary';
 
 interface SafeComponentProps {
@@ -74,9 +75,11 @@ export const SafeComponentFallbacks = {
         <div className="bg-red-50 border-b border-red-200 p-4">
             <div className="container mx-auto flex items-center justify-between">
                 <div className="flex items-center">
-                    <img
+                    <Image
                         src="/2b_logo_sag.png"
                         alt="2B Global Enerji"
+                        width={48}
+                        height={48}
                         className="h-12 w-auto"
                     />
                 </div>
@@ -148,7 +151,7 @@ export const SafeComponentFallbacks = {
                 rel="noopener noreferrer"
                 className="inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
             >
-                Google Maps'te Aç
+                Google Maps&apos;te Aç
             </a>
         </div>
     ),

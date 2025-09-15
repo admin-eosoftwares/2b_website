@@ -1,6 +1,7 @@
 'use client';
 
 import React, { Component, ErrorInfo, ReactNode } from 'react';
+import Image from 'next/image';
 
 interface Props {
     children: ReactNode;
@@ -60,9 +61,11 @@ const DefaultErrorFallback: React.FC<{ error?: Error }> = ({ error }) => {
                 <div className="bg-white rounded-lg shadow-lg p-8">
                     {/* Logo */}
                     <div className="mb-6">
-                        <img
+                        <Image
                             src="/2b_logo_sag.png"
                             alt="2B Global Enerji"
+                            width={64}
+                            height={64}
                             className="h-16 mx-auto mb-4"
                         />
                     </div>

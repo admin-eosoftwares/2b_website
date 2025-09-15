@@ -1,12 +1,16 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import PageErrorBoundary from '../components/PageErrorBoundary';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useAnalytics } from '../components/GoogleAnalytics';
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Analytics hook
+  const { trackEvent } = useAnalytics();
 
   // Mobil kart animasyon durumları
   const [mobileCard1Visible, setMobileCard1Visible] = useState(false);
@@ -86,6 +90,72 @@ export default function Home() {
 
   return (
     <PageErrorBoundary pageName="Ana Sayfa">
+      {/* Structured Data - JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "2B Global Enerji",
+            "alternateName": "2B Global Enerji San. Tic. Ltd. Şti.",
+            "url": "https://2bltd.com.tr",
+            "logo": "https://2bltd.com.tr/2b_logo_sag.png",
+            "description": "Antalya merkezli yenilenebilir enerji ve elektrik-elektronik sektörlerinde 20+ yıllık deneyim.",
+            "foundingDate": "2003",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Bahçeyaka Mah. Atatürk Cad. No 375/A",
+              "addressLocality": "Döşemealtı",
+              "addressRegion": "Antalya",
+              "addressCountry": "TR"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+90-242-324-60-77",
+              "contactType": "customer service",
+              "email": "info@2bltd.com.tr",
+              "availableLanguage": "Turkish"
+            },
+            "sameAs": [
+              "https://www.instagram.com/2b_global_enerji",
+              "https://wa.me/905454036676"
+            ],
+            "serviceArea": {
+              "@type": "GeoCircle",
+              "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": 37.0062,
+                "longitude": 30.5902
+              },
+              "geoRadius": "500000"
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Yenilenebilir Enerji Çözümleri",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Güneş Enerjisi Sistemleri",
+                    "description": "Fotovoltaik modül, inverter ve batarya çözümleri"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "EPC Hizmetleri",
+                    "description": "Mühendislik, tedarik ve inşaat hizmetleri"
+                  }
+                }
+              ]
+            }
+          })
+        }}
+      />
+
       <div className="min-h-screen bg-[#f8f8ff]">
 
         {/* Video Bölümü */}
@@ -276,6 +346,7 @@ export default function Home() {
                   >
                     <div
                       onClick={() => {
+                        trackEvent('click', 'Navigation', 'Projelerimiz');
                         window.location.href = '/projelerimiz';
                       }}
                       className="group relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-102 active:scale-95 transition-all duration-300 cursor-pointer border border-blue-200 h-[280px] flex flex-col justify-between overflow-hidden touch-manipulation"
@@ -317,6 +388,7 @@ export default function Home() {
                   >
                     <div
                       onClick={() => {
+                        trackEvent('click', 'Navigation', 'Hakkımızda');
                         window.location.href = '/hakkimizda';
                       }}
                       className="group relative bg-gradient-to-br from-rose-50 to-pink-100 rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-rose-500/20 hover:scale-102 active:scale-95 transition-all duration-300 cursor-pointer border border-rose-200 h-[280px] flex flex-col justify-between overflow-hidden touch-manipulation"
@@ -358,6 +430,7 @@ export default function Home() {
                   >
                     <div
                       onClick={() => {
+                        trackEvent('click', 'Navigation', 'İletişim');
                         sessionStorage.setItem('scrollToId', 'bize-ulasin');
                         window.location.href = '/iletisim#bize-ulasin';
                       }}
@@ -562,6 +635,7 @@ export default function Home() {
                   >
                     <div
                       onClick={() => {
+                        trackEvent('click', 'Navigation', 'Projelerimiz');
                         window.location.href = '/projelerimiz';
                       }}
                       className="group relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-105 transition-all duration-400 cursor-pointer border border-blue-200 h-[380px] flex flex-col justify-between overflow-hidden"
@@ -611,6 +685,7 @@ export default function Home() {
                   >
                     <div
                       onClick={() => {
+                        trackEvent('click', 'Navigation', 'Hakkımızda');
                         window.location.href = '/hakkimizda';
                       }}
                       className="group relative bg-gradient-to-br from-rose-50 to-pink-100 rounded-2xl p-8 hover:shadow-2xl hover:shadow-rose-500/20 hover:scale-105 transition-all duration-400 cursor-pointer border border-rose-200 h-[380px] flex flex-col justify-between overflow-hidden"
@@ -660,6 +735,7 @@ export default function Home() {
                   >
                     <div
                       onClick={() => {
+                        trackEvent('click', 'Navigation', 'İletişim');
                         sessionStorage.setItem('scrollToId', 'bize-ulasin');
                         window.location.href = '/iletisim#bize-ulasin';
                       }}

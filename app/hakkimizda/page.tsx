@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import PageErrorBoundary from '../../components/PageErrorBoundary';
 import BrandsSlider from '../../components/BrandsSlider';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
@@ -92,9 +93,11 @@ export default function Hakkimizda() {
                                 <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 border border-gray-100">
                                     <div className="flex items-center mb-6">
                                         <div className="w-12 h-12 mr-4">
-                                            <img
+                                            <Image
                                                 src="/2b_logo2.png"
                                                 alt="2B Global Enerji Logo"
+                                                width={48}
+                                                height={48}
                                                 className="w-full h-full object-contain"
                                             />
                                         </div>
@@ -210,9 +213,9 @@ export default function Hakkimizda() {
                                                 <div className="flex items-center mb-4">
                                                     <h3 className="text-xl font-bold text-blue-800">2007</h3>
                                                 </div>
-                                                <h4 className="text-lg font-semibold text-blue-700 mb-3">Antalya'ya Taşınma</h4>
+                                                <h4 className="text-lg font-semibold text-blue-700 mb-3">Antalya&apos;ya Taşınma</h4>
                                                 <p className="text-gray-600 leading-relaxed">
-                                                    Şirket merkezi Antalya'ya taşınmış ve Akdeniz Bölgesi'nde pil, elektrik ve elektronik ürünlerinin
+                                                    Şirket merkezi Antalya&apos;ya taşınmış ve Akdeniz Bölgesi&apos;nde pil, elektrik ve elektronik ürünlerinin
                                                     toptan satışına devam etmiştir.
                                                 </p>
                                             </div>
@@ -224,9 +227,9 @@ export default function Hakkimizda() {
                                                 <div className="flex items-center mb-4">
                                                     <h3 className="text-xl font-bold text-blue-800">2007</h3>
                                                 </div>
-                                                <h4 className="text-lg font-semibold text-blue-700 mb-3">Antalya'ya Taşınma</h4>
+                                                <h4 className="text-lg font-semibold text-blue-700 mb-3">Antalya&apos;ya Taşınma</h4>
                                                 <p className="text-gray-600 leading-relaxed">
-                                                    Şirket merkezi Antalya'ya taşınmış ve Akdeniz Bölgesi'nde pil, elektrik ve elektronik ürünlerinin
+                                                    Şirket merkezi Antalya&apos;ya taşınmış ve Akdeniz Bölgesi&apos;nde pil, elektrik ve elektronik ürünlerinin
                                                     toptan satışına devam etmiştir.
                                                 </p>
                                             </div>
@@ -246,7 +249,7 @@ export default function Hakkimizda() {
                                                 </div>
                                                 <h4 className="text-lg font-semibold text-emerald-700 mb-3">Enerji Sektörüne Giriş</h4>
                                                 <p className="text-gray-600 leading-relaxed">
-                                                    Mevcut faaliyetlerimize CW Enerji'nin EPC uygulama ve satış noktası da dahil edilerek,
+                                                    Mevcut faaliyetlerimize CW Enerji&apos;nin EPC uygulama ve satış noktası da dahil edilerek,
                                                     şirketimiz yenilenebilir enerji sektöründe faaliyet göstermeye başlamıştır.
                                                 </p>
                                             </div>
@@ -260,7 +263,7 @@ export default function Hakkimizda() {
                                                 </div>
                                                 <h4 className="text-lg font-semibold text-emerald-700 mb-3">Enerji Sektörüne Giriş</h4>
                                                 <p className="text-gray-600 leading-relaxed">
-                                                    Mevcut faaliyetlerimize CW Enerji'nin EPC uygulama ve satış noktası da dahil edilerek,
+                                                    Mevcut faaliyetlerimize CW Enerji&apos;nin EPC uygulama ve satış noktası da dahil edilerek,
                                                     şirketimiz yenilenebilir enerji sektöründe faaliyet göstermeye başlamıştır.
                                                 </p>
                                             </div>
@@ -289,7 +292,7 @@ export default function Hakkimizda() {
                                                 <div className="flex items-center mb-4">
                                                     <h3 className="text-xl font-bold text-purple-800">2024</h3>
                                                 </div>
-                                                <h4 className="text-lg font-semibold text-purple-700 mb-3">"Global Enerji" Dönüşümü</h4>
+                                                <h4 className="text-lg font-semibold text-purple-700 mb-3">&quot;Global Enerji&quot; Dönüşümü</h4>
                                                 <p className="text-gray-600 leading-relaxed">
                                                     Yenilenebilir enerji sektöründeki artan faaliyetlerimiz doğrultusunda şirket unvanımız
                                                     2B Global Enerji San. Tic. Ltd. Şti. olarak yenilenmiştir.
@@ -303,7 +306,7 @@ export default function Hakkimizda() {
                                                 <div className="flex items-center mb-4">
                                                     <h3 className="text-xl font-bold text-purple-800">2024</h3>
                                                 </div>
-                                                <h4 className="text-lg font-semibold text-purple-700 mb-3">"Global Enerji" Dönüşümü</h4>
+                                                <h4 className="text-lg font-semibold text-purple-700 mb-3">&quot;Global Enerji&quot; Dönüşümü</h4>
                                                 <p className="text-gray-600 leading-relaxed">
                                                     Yenilenebilir enerji sektöründeki artan faaliyetlerimiz doğrultusunda şirket unvanımız
                                                     2B Global Enerji San. Tic. Ltd. Şti. olarak yenilenmiştir.
@@ -325,7 +328,7 @@ export default function Hakkimizda() {
                                                 </div>
                                                 <h4 className="text-lg font-semibold text-rose-700 mb-3">Sürekli Gelişim</h4>
                                                 <p className="text-gray-600 leading-relaxed">
-                                                    Akdeniz Bölgesi'nde pil, elektrik ve elektronik ürünlerinin toptan satışı ile birlikte
+                                                    Akdeniz Bölgesi&apos;nde pil, elektrik ve elektronik ürünlerinin toptan satışı ile birlikte
                                                     fotovoltaik modül, inverter ve batarya ürünlerinin satışı ve uygulaması alanlarında
                                                     faaliyetlerini sürdürmektedir.
                                                 </p>
@@ -340,7 +343,7 @@ export default function Hakkimizda() {
                                                 </div>
                                                 <h4 className="text-lg font-semibold text-rose-700 mb-3">Sürekli Gelişim</h4>
                                                 <p className="text-gray-600 leading-relaxed">
-                                                    Akdeniz Bölgesi'nde pil, elektrik ve elektronik ürünlerinin toptan satışı ile birlikte
+                                                    Akdeniz Bölgesi&apos;nde pil, elektrik ve elektronik ürünlerinin toptan satışı ile birlikte
                                                     fotovoltaik modül, inverter ve batarya ürünlerinin satışı ve uygulaması alanlarında
                                                     faaliyetlerini sürdürmektedir.
                                                 </p>

@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import ErrorBoundary from './ErrorBoundary';
 
 interface PageErrorBoundaryProps {
@@ -20,9 +22,11 @@ const PageErrorBoundary: React.FC<PageErrorBoundaryProps> = ({
                 <div className="bg-white rounded-lg shadow-lg p-8">
                     {/* Logo */}
                     <div className="mb-6">
-                        <img
+                        <Image
                             src="/2b_logo_sag.png"
                             alt="2B Global Enerji"
+                            width={64}
+                            height={64}
                             className="h-16 mx-auto mb-4"
                         />
                     </div>
@@ -46,12 +50,12 @@ const PageErrorBoundary: React.FC<PageErrorBoundaryProps> = ({
                             Sayfayı Yenile
                         </button>
 
-                        <a
+                        <Link
                             href="/"
                             className="block w-full bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors font-medium text-center"
                         >
                             Ana Sayfaya Dön
-                        </a>
+                        </Link>
 
                         {/* Sayfa Özel Navigasyon */}
                         {pageName !== 'Hakkımızda' && (

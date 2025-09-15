@@ -1,20 +1,19 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import PageErrorBoundary from '../../components/PageErrorBoundary';
 import SafeComponent, { SafeComponentFallbacks } from '../../components/SafeComponent';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+import { useAnalytics } from '../../components/GoogleAnalytics';
 
 export default function Iletisim() {
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [isHighlighted, setIsHighlighted] = useState(false);
-    const [isScrolling, setIsScrolling] = useState(false);
+    // Analytics hook
+    const { trackEvent } = useAnalytics();
 
     // Scroll animasyonları için hook'lar
     const { elementRef: iletisimRef, isVisible: iletisimVisible } = useScrollAnimation({ delay: 0 });
     const { elementRef: iletisimContentRef, isVisible: iletisimContentVisible } = useScrollAnimation({ delay: 100 });
-    const { elementRef: formRef, isVisible: formVisible } = useScrollAnimation({ delay: 0 });
-    const { elementRef: formContentRef, isVisible: formContentVisible } = useScrollAnimation({ delay: 150 });
+    const { elementRef: formRef, isVisible: formVisible } = useScrollAnimation({ delay: 150 });
 
     // Form state
     const [formData, setFormData] = useState({
@@ -28,20 +27,7 @@ export default function Iletisim() {
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsLoaded(true);
-        }, 200);
 
-        return () => clearTimeout(timer);
-    }, []);
-
-    const triggerAnimation = useCallback(() => {
-        setIsScrolling(true);
-        setTimeout(() => {
-            setIsScrolling(false);
-        }, 1000); // Animation duration
-    }, []);
 
     // Form validation
     const validateForm = () => {
@@ -98,6 +84,9 @@ export default function Iletisim() {
             return;
         }
 
+        // Track form submission attempt
+        trackEvent('form_submit_attempt', 'Contact Form', 'İletişim Formu');
+
         setIsSubmitting(true);
         setSubmitStatus('idle');
 
@@ -112,6 +101,8 @@ export default function Iletisim() {
 
             if (response.ok) {
                 setSubmitStatus('success');
+                // Track successful form submission
+                trackEvent('form_submit_success', 'Contact Form', 'İletişim Formu');
                 setFormData({
                     name: '',
                     email: '',
@@ -121,6 +112,8 @@ export default function Iletisim() {
                 });
             } else {
                 setSubmitStatus('error');
+                // Track form submission error
+                trackEvent('form_submit_error', 'Contact Form', 'İletişim Formu');
             }
         } catch (error) {
             console.error('Form submission error:', error);
@@ -134,14 +127,13 @@ export default function Iletisim() {
         // For navigation from other pages, based on URL hash
         const hash = window.location.hash;
         if (hash === '#bize-ulasin') {
-            setTimeout(triggerAnimation, 500); // Delay to sync with scroll
+            // Scroll to contact form
         }
 
         // For same-page navigation, based on custom event
         const handleInternalNav = (event: CustomEvent) => {
             if (event.detail.id === 'bize-ulasin') {
-                // The delay is now handled by the hook, so we can trigger instantly.
-                triggerAnimation();
+                // Scroll to contact form
             }
         };
 
@@ -150,7 +142,7 @@ export default function Iletisim() {
         return () => {
             window.removeEventListener('internal-nav', handleInternalNav as EventListener);
         };
-    }, [triggerAnimation]);
+    }, []);
 
     return (
         <PageErrorBoundary pageName="İletişim">
@@ -191,7 +183,7 @@ export default function Iletisim() {
                                         </div>
 
                                         <div className="space-y-3">
-                                            <div className="group bg-white rounded-xl p-4 border border-gray-200 hover:border-blue-300 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                                            <a href="mailto:info@2bltd.com.tr" className="group bg-white rounded-xl p-4 border border-gray-200 hover:border-blue-300 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer block">
                                                 <div className="flex items-center space-x-4">
                                                     <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300">
                                                         <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -203,9 +195,9 @@ export default function Iletisim() {
                                                         <p className="text-sm text-gray-600 group-hover:text-gray-800 transition-colors duration-300">info@2bltd.com.tr</p>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </a>
 
-                                            <div className="group bg-white rounded-xl p-4 border border-gray-200 hover:border-blue-300 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                                            <a href="tel:+902423246077" className="group bg-white rounded-xl p-4 border border-gray-200 hover:border-green-300 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer block">
                                                 <div className="flex items-center space-x-4">
                                                     <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300">
                                                         <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -217,9 +209,9 @@ export default function Iletisim() {
                                                         <p className="text-sm text-gray-600 group-hover:text-gray-800 transition-colors duration-300">0242 324 60 77</p>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </a>
 
-                                            <div className="group bg-white rounded-xl p-4 border border-gray-200 hover:border-blue-300 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                                            <a href="https://maps.app.goo.gl/133QGFZSyNxvmUNC9" target="_blank" rel="noopener noreferrer" className="group bg-white rounded-xl p-4 border border-gray-200 hover:border-purple-300 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer block">
                                                 <div className="flex items-center space-x-4">
                                                     <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300">
                                                         <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -230,12 +222,12 @@ export default function Iletisim() {
                                                     <div className="flex-1 min-w-0">
                                                         <h3 className="text-sm font-semibold text-gray-900 group-hover:text-purple-700 transition-colors duration-300">Adres</h3>
                                                         <p className="text-sm text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
-                                                            Bahçeyaka Mah. Atatürk Cad. No 375/A<br />
-                                                            Döşemealtı / ANTALYA
+                                                            Bahçeyaka, Atatürk Blv. No:375<br />
+                                                            07190 Döşemealtı/Antalya
                                                         </p>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </a>
 
                                             {/* Harita */}
                                             <div className="mt-6">
@@ -289,7 +281,7 @@ export default function Iletisim() {
                                                 </div>
                                             </a>
 
-                                            <a href="#" className="group block bg-white rounded-xl p-4 border border-gray-200 hover:border-blue-400 hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
+                                            <a href="https://www.linkedin.com/in/2b-global-enerji-049399384?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer" className="group block bg-white rounded-xl p-4 border border-gray-200 hover:border-blue-400 hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
                                                 <div className="flex items-center space-x-4">
                                                     <div className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300" style={{ backgroundColor: '#0077B5' }}>
                                                         <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">

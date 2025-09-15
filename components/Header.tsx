@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useNavigation } from '../hooks/useNavigation';
 import { useMobileMenu } from '../contexts/MobileMenuContext';
@@ -37,12 +38,12 @@ const Header = React.memo(function Header() {
 
 
     return (
-        <header className={headerClasses} data-testid="main-header">
-            <nav className={CSS_CLASSES.container} role="navigation" aria-label="Ana navigasyon">
+        <header className={headerClasses} data-testid="main-header" role="banner">
+            <nav id="navigation" className={CSS_CLASSES.container} role="navigation" aria-label="Ana navigasyon">
                 <div className={CSS_CLASSES.headerContent}>
                     {/* Logo */}
                     <div className="flex-shrink-0 px-2 lg:px-0">
-                        <a href="/" className={CSS_CLASSES.focus} data-testid="logo-link">
+                        <Link href="/" className={CSS_CLASSES.focus} data-testid="logo-link">
                             <Image
                                 src="/2b_logo_sag.png"
                                 alt="2B Logo"
@@ -51,7 +52,7 @@ const Header = React.memo(function Header() {
                                 className="h-16 lg:h-20 w-auto"
                                 priority
                             />
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Desktop Navigation */}

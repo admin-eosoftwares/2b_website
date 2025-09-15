@@ -29,8 +29,18 @@ export interface NavigationActions {
     setIsAboutDropdownOpen: (open: boolean) => void;
 }
 
-export interface UseNavigationReturn extends NavigationState, NavigationActions {
-    dropdownRef: React.RefObject<HTMLDivElement>;
+export interface UseNavigationReturn {
+    // State
+    isAboutDropdownOpen: boolean;
+    isLoaded: boolean;
+
+    // Actions
+    closeDropdown: () => void;
+    setIsLoaded: (loaded: boolean) => void;
+    setIsAboutDropdownOpen: (open: boolean) => void;
+
+    // Refs
+    dropdownRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export type NavigationProps = {

@@ -38,7 +38,6 @@ const DesktopNavigation = React.memo(function DesktopNavigation({
                 onMouseEnter={onAboutMouseEnter}
                 onMouseLeave={onAboutMouseLeave}
                 isActive={pathname.startsWith('/hakkimizda')}
-                pathname={pathname}
             />
 
             {/* Online Shopping Button */}

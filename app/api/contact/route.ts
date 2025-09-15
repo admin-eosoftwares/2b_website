@@ -23,27 +23,43 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Debug: Environment variables
-        console.log('SMTP_HOST:', process.env.SMTP_HOST);
-        console.log('SMTP_PORT:', process.env.SMTP_PORT);
-        console.log('SMTP_USER:', process.env.SMTP_USER);
-        console.log('SMTP_PASS:', process.env.SMTP_PASS ? '***' : 'NOT SET');
+        // Environment variables validation
+        const requiredEnvVars = {
+            SMTP_HOST: process.env.SMTP_HOST,
+            SMTP_PORT: process.env.SMTP_PORT,
+            SMTP_USER: process.env.SMTP_USER,
+            SMTP_PASS: process.env.SMTP_PASS,
+            CONTACT_EMAIL: process.env.CONTACT_EMAIL,
+        };
+
+        // Check if all required environment variables are set
+        const missingVars = Object.entries(requiredEnvVars)
+            .filter(([, value]) => !value)
+            .map(([key]) => key);
+
+        if (missingVars.length > 0) {
+            console.error('Missing required environment variables:', missingVars);
+            return NextResponse.json(
+                { error: 'Email servisi yapılandırılamadı' },
+                { status: 500 }
+            );
+        }
 
         // Email configuration
         const transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST || 'mail.2bltd.com.tr',
-            port: parseInt(process.env.SMTP_PORT || '465'),
+            host: requiredEnvVars.SMTP_HOST!,
+            port: parseInt(requiredEnvVars.SMTP_PORT!),
             secure: true, // true for 465, false for other ports
             auth: {
-                user: process.env.SMTP_USER || 'info@2bltd.com.tr',
-                pass: process.env.SMTP_PASS || 'Bilgi-2024-2Btr',
+                user: requiredEnvVars.SMTP_USER!,
+                pass: requiredEnvVars.SMTP_PASS!,
             },
         });
 
         // Email content
         const mailOptions = {
-            from: process.env.SMTP_USER,
-            to: process.env.CONTACT_EMAIL || 'info@2bltd.com.tr',
+            from: requiredEnvVars.SMTP_USER!,
+            to: requiredEnvVars.CONTACT_EMAIL!,
             subject: `İletişim Formu: ${subject}`,
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -74,7 +90,7 @@ export async function POST(request: NextRequest) {
         // Send email
         await transporter.sendMail(mailOptions);
 
-        console.log('Email sent successfully to:', process.env.CONTACT_EMAIL || 'info@2bltd.com.tr');
+        console.log('Email sent successfully to:', requiredEnvVars.CONTACT_EMAIL!);
 
         return NextResponse.json(
             { message: 'Mesaj başarıyla gönderildi' },

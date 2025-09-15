@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function BrandsSlider() {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -119,9 +120,11 @@ export default function BrandsSlider() {
                                             key={brandIndex}
                                             className="group flex justify-center items-center p-4 bg-transparent transition-all duration-300 w-full h-36 hover:scale-105"
                                         >
-                                            <img
+                                            <Image
                                                 src={brand.logo}
                                                 alt={`${brand.name} Logo`}
+                                                width={200}
+                                                height={80}
                                                 className={`w-auto object-contain transition-transform duration-300 group-hover:scale-110 ${brand.name === 'Varta' ? 'h-10' :
                                                     brand.name === 'Tommatech' ? 'h-24' :
                                                         brand.name === 'Avec' ? 'h-11' :
@@ -160,9 +163,11 @@ export default function BrandsSlider() {
                                             key={brandIndex}
                                             className="group flex justify-center items-center p-3 bg-transparent transition-all duration-300 w-full h-28 hover:scale-105"
                                         >
-                                            <img
+                                            <Image
                                                 src={brand.logo}
                                                 alt={`${brand.name} Logo`}
+                                                width={150}
+                                                height={60}
                                                 className={`w-auto object-contain transition-transform duration-300 group-hover:scale-110 max-w-full ${brand.name === 'CW Enerji' ? 'h-14' :
                                                     brand.name === 'Varta' ? 'h-8' :
                                                         brand.name === 'Tommatech' ? 'h-20' :

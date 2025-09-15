@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useSmoothScroll } from '../hooks/useSmoothScroll';
 
 const Footer: React.FC = () => {
@@ -18,7 +19,7 @@ const Footer: React.FC = () => {
     }, []);
 
     return (
-        <footer className={`bg-[#5F67A1FF]/80 backdrop-blur border-t border-gray-200 transition-all duration-500 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
+        <footer id="footer" role="contentinfo" className={`bg-[#5F67A1FF]/80 backdrop-blur border-t border-gray-200 transition-all duration-500 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
             <div className="max-w-6xl mx-auto px-4 py-6 md:py-10">
                 <div className="flex flex-row gap-4 lg:gap-8 items-stretch px-8 lg:px-8">
                     {/* Logo + Social Media */}
@@ -50,7 +51,7 @@ const Footer: React.FC = () => {
                                 </a>
 
                                 <a
-                                    href="#"
+                                    href="https://www.linkedin.com/in/2b-global-enerji-049399384?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
                                     className="flex items-center space-x-2 text-white/80 hover:text-blue-500 transition-colors group"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -85,12 +86,12 @@ const Footer: React.FC = () => {
                         <nav aria-label="Footer navigation">
                             <ul className="space-y-2">
                                 <li>
-                                    <a
+                                    <Link
                                         href="/"
                                         className="text-sm text-white/80 hover:text-white transition-colors"
                                     >
                                         Anasayfa
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <a
@@ -150,7 +151,7 @@ const Footer: React.FC = () => {
                                 <span className="text-sm text-white/80 group-hover:text-white transition-colors">0242 324 60 77</span>
                             </a>
                             <a
-                                href="https://maps.google.com/maps?q=Bahçeyaka+Mah.+Atatürk+Cad.+No+375/A+Döşemealtı+ANTALYA"
+                                href="https://maps.app.goo.gl/133QGFZSyNxvmUNC9"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-start space-x-2 hover:text-white transition-colors group"
@@ -169,7 +170,7 @@ const Footer: React.FC = () => {
 
             {/* Copyright */}
             <div className={`mx-4 md:mx-32 lg:mx-48 border-t-2 border-white/60 py-1 md:py-2 text-center text-xs text-white transition-all duration-500 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`} style={{ transitionDelay: isLoaded ? '600ms' : '0ms' }}>
-                © {currentYear} 2B Global Enerji - Tüm hakları saklıdır. | Geliştirici: <a href="https://www.instagram.com/oktay_ispir?igsh=Mmk4dWVkZXd2cmlw&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-all duration-300 underline hover:scale-110 hover:font-bold">Oktay İspir</a>
+                © {currentYear} 2B Global Enerji - Tüm hakları saklıdır. | Geliştirici: <a href="https://www.linkedin.com/in/oktay-ispir-656458367?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-all duration-300 underline hover:scale-110 hover:font-bold">Oktay İspir</a>
             </div>
         </footer>
     );

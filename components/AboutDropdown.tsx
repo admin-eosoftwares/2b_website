@@ -10,15 +10,13 @@ interface AboutDropdownProps {
     onMouseEnter: () => void;
     onMouseLeave: () => void;
     isActive: boolean;
-    pathname: string;
 }
 
 const AboutDropdown = React.memo(function AboutDropdown({
     isOpen,
     onMouseEnter,
     onMouseLeave,
-    isActive,
-    pathname
+    isActive
 }: AboutDropdownProps) {
     const dropdownRef = useRef<HTMLDivElement>(null);
     const { handleClick } = useSmoothScroll();

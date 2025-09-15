@@ -8,7 +8,12 @@ export default function Loading() {
     const [showLoading, setShowLoading] = useState(false);
 
     useEffect(() => {
-        let loadingTimer: NodeJS.Timeout;
+        const loadingTimer: NodeJS.Timeout = setTimeout(() => {
+            if (document.readyState !== 'complete') {
+                setShowLoading(true);
+                setIsLoading(true);
+            }
+        }, 500);
         let hideTimer: NodeJS.Timeout;
 
         // Eğer sayfa hızlı yüklenirse loading'i gösterme
@@ -22,13 +27,6 @@ export default function Loading() {
             }
         };
 
-        // 500ms sonra hala yüklenmemişse loading'i göster
-        loadingTimer = setTimeout(() => {
-            if (document.readyState !== 'complete') {
-                setShowLoading(true);
-                setIsLoading(true);
-            }
-        }, 500);
 
         if (document.readyState === 'complete') {
             handleLoad();
