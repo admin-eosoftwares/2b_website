@@ -1094,59 +1094,67 @@ export default function Projelerimiz() {
                                                 })}
                                             </div>
 
-                                            {/* Slider Navigation Buttons */}
-                                            <button
-                                                onClick={prevImage}
-                                                onMouseEnter={() => setIsAutoPlay(false)}
-                                                onMouseLeave={() => setIsAutoPlay(true)}
-                                                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                                </svg>
-                                            </button>
-                                            <button
-                                                onClick={nextImage}
-                                                onMouseEnter={() => setIsAutoPlay(false)}
-                                                onMouseLeave={() => setIsAutoPlay(true)}
-                                                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </button>
-
-                                            {/* Slider Dots */}
-                                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                                                {realProject.images.map((_, index) => (
+                                            {/* Slider Navigation Buttons - Only show if more than 1 image */}
+                                            {realProject.images.length > 1 && (
+                                                <>
                                                     <button
-                                                        key={index}
-                                                        onClick={() => goToImage(index)}
+                                                        onClick={prevImage}
                                                         onMouseEnter={() => setIsAutoPlay(false)}
                                                         onMouseLeave={() => setIsAutoPlay(true)}
-                                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentImageIndex
-                                                            ? 'bg-white shadow-lg scale-125'
-                                                            : 'bg-white/60 hover:bg-white/80'
-                                                            }`}
-                                                    />
-                                                ))}
-                                            </div>
+                                                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                        </svg>
+                                                    </button>
+                                                    <button
+                                                        onClick={nextImage}
+                                                        onMouseEnter={() => setIsAutoPlay(false)}
+                                                        onMouseLeave={() => setIsAutoPlay(true)}
+                                                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </button>
+                                                </>
+                                            )}
 
-                                            {/* Play/Pause Button */}
-                                            <button
-                                                onClick={() => setIsAutoPlay(!isAutoPlay)}
-                                                className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
-                                            >
-                                                {isAutoPlay ? (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                ) : (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
-                                                    </svg>
-                                                )}
-                                            </button>
+                                            {/* Slider Dots - Only show if more than 1 image */}
+                                            {realProject.images.length > 1 && (
+                                                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                                    {realProject.images.map((_, index) => (
+                                                        <button
+                                                            key={index}
+                                                            onClick={() => goToImage(index)}
+                                                            onMouseEnter={() => setIsAutoPlay(false)}
+                                                            onMouseLeave={() => setIsAutoPlay(true)}
+                                                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentImageIndex
+                                                                ? 'bg-white shadow-lg scale-125'
+                                                                : 'bg-white/60 hover:bg-white/80'
+                                                                }`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            {/* Play/Pause Button - Only show if more than 1 image */}
+                                            {realProject.images.length > 1 && (
+                                                <button
+                                                    onClick={() => setIsAutoPlay(!isAutoPlay)}
+                                                    className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
+                                                >
+                                                    {isAutoPlay ? (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    ) : (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
+                                                        </svg>
+                                                    )}
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
 
@@ -1266,59 +1274,67 @@ export default function Projelerimiz() {
                                                 })}
                                             </div>
 
-                                            {/* Slider Navigation Buttons */}
-                                            <button
-                                                onClick={prevSecondImage}
-                                                onMouseEnter={() => setIsSecondProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsSecondProjectAutoPlay(true)}
-                                                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                                </svg>
-                                            </button>
-                                            <button
-                                                onClick={nextSecondImage}
-                                                onMouseEnter={() => setIsSecondProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsSecondProjectAutoPlay(true)}
-                                                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </button>
-
-                                            {/* Slider Dots */}
-                                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                                                {secondProject.images.map((_, index) => (
+                                            {/* Slider Navigation Buttons - Only show if more than 1 image */}
+                                            {secondProject.images.length > 1 && (
+                                                <>
                                                     <button
-                                                        key={index}
-                                                        onClick={() => goToSecondImage(index)}
+                                                        onClick={prevSecondImage}
                                                         onMouseEnter={() => setIsSecondProjectAutoPlay(false)}
                                                         onMouseLeave={() => setIsSecondProjectAutoPlay(true)}
-                                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${index === secondProjectImageIndex
-                                                            ? 'bg-white shadow-lg scale-125'
-                                                            : 'bg-white/60 hover:bg-white/80'
-                                                            }`}
-                                                    />
-                                                ))}
-                                            </div>
+                                                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                        </svg>
+                                                    </button>
+                                                    <button
+                                                        onClick={nextSecondImage}
+                                                        onMouseEnter={() => setIsSecondProjectAutoPlay(false)}
+                                                        onMouseLeave={() => setIsSecondProjectAutoPlay(true)}
+                                                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </button>
+                                                </>
+                                            )}
 
-                                            {/* Play/Pause Button */}
-                                            <button
-                                                onClick={() => setIsSecondProjectAutoPlay(!isSecondProjectAutoPlay)}
-                                                className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
-                                            >
-                                                {isSecondProjectAutoPlay ? (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                ) : (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
-                                                    </svg>
-                                                )}
-                                            </button>
+                                            {/* Slider Dots - Only show if more than 1 image */}
+                                            {secondProject.images.length > 1 && (
+                                                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                                    {secondProject.images.map((_, index) => (
+                                                        <button
+                                                            key={index}
+                                                            onClick={() => goToSecondImage(index)}
+                                                            onMouseEnter={() => setIsSecondProjectAutoPlay(false)}
+                                                            onMouseLeave={() => setIsSecondProjectAutoPlay(true)}
+                                                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === secondProjectImageIndex
+                                                                ? 'bg-white shadow-lg scale-125'
+                                                                : 'bg-white/60 hover:bg-white/80'
+                                                                }`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            {/* Play/Pause Button - Only show if more than 1 image */}
+                                            {secondProject.images.length > 1 && (
+                                                <button
+                                                    onClick={() => setIsSecondProjectAutoPlay(!isSecondProjectAutoPlay)}
+                                                    className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
+                                                >
+                                                    {isSecondProjectAutoPlay ? (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    ) : (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
+                                                        </svg>
+                                                    )}
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
 
@@ -1438,59 +1454,67 @@ export default function Projelerimiz() {
                                                 })}
                                             </div>
 
-                                            {/* Slider Navigation Buttons */}
-                                            <button
-                                                onClick={prevThirdImage}
-                                                onMouseEnter={() => setIsThirdProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsThirdProjectAutoPlay(true)}
-                                                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                                </svg>
-                                            </button>
-                                            <button
-                                                onClick={nextThirdImage}
-                                                onMouseEnter={() => setIsThirdProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsThirdProjectAutoPlay(true)}
-                                                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </button>
-
-                                            {/* Slider Dots */}
-                                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                                                {thirdProject.images.map((_, index) => (
+                                            {/* Slider Navigation Buttons - Only show if more than 1 image */}
+                                            {thirdProject.images.length > 1 && (
+                                                <>
                                                     <button
-                                                        key={index}
-                                                        onClick={() => goToThirdImage(index)}
+                                                        onClick={prevThirdImage}
                                                         onMouseEnter={() => setIsThirdProjectAutoPlay(false)}
                                                         onMouseLeave={() => setIsThirdProjectAutoPlay(true)}
-                                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${index === thirdProjectImageIndex
-                                                            ? 'bg-white shadow-lg scale-125'
-                                                            : 'bg-white/60 hover:bg-white/80'
-                                                            }`}
-                                                    />
-                                                ))}
-                                            </div>
+                                                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                        </svg>
+                                                    </button>
+                                                    <button
+                                                        onClick={nextThirdImage}
+                                                        onMouseEnter={() => setIsThirdProjectAutoPlay(false)}
+                                                        onMouseLeave={() => setIsThirdProjectAutoPlay(true)}
+                                                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </button>
+                                                </>
+                                            )}
 
-                                            {/* Play/Pause Button */}
-                                            <button
-                                                onClick={() => setIsThirdProjectAutoPlay(!isThirdProjectAutoPlay)}
-                                                className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
-                                            >
-                                                {isThirdProjectAutoPlay ? (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                ) : (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
-                                                    </svg>
-                                                )}
-                                            </button>
+                                            {/* Slider Dots - Only show if more than 1 image */}
+                                            {thirdProject.images.length > 1 && (
+                                                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                                    {thirdProject.images.map((_, index) => (
+                                                        <button
+                                                            key={index}
+                                                            onClick={() => goToThirdImage(index)}
+                                                            onMouseEnter={() => setIsThirdProjectAutoPlay(false)}
+                                                            onMouseLeave={() => setIsThirdProjectAutoPlay(true)}
+                                                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === thirdProjectImageIndex
+                                                                ? 'bg-white shadow-lg scale-125'
+                                                                : 'bg-white/60 hover:bg-white/80'
+                                                                }`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            {/* Play/Pause Button - Only show if more than 1 image */}
+                                            {thirdProject.images.length > 1 && (
+                                                <button
+                                                    onClick={() => setIsThirdProjectAutoPlay(!isThirdProjectAutoPlay)}
+                                                    className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
+                                                >
+                                                    {isThirdProjectAutoPlay ? (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    ) : (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
+                                                        </svg>
+                                                    )}
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
 
@@ -1610,59 +1634,67 @@ export default function Projelerimiz() {
                                                 })}
                                             </div>
 
-                                            {/* Slider Navigation Buttons */}
-                                            <button
-                                                onClick={prevFourthImage}
-                                                onMouseEnter={() => setIsFourthProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsFourthProjectAutoPlay(true)}
-                                                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                                </svg>
-                                            </button>
-                                            <button
-                                                onClick={nextFourthImage}
-                                                onMouseEnter={() => setIsFourthProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsFourthProjectAutoPlay(true)}
-                                                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </button>
-
-                                            {/* Slider Dots */}
-                                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                                                {fourthProject.images.map((_, index) => (
+                                            {/* Slider Navigation Buttons - Only show if more than 1 image */}
+                                            {fourthProject.images.length > 1 && (
+                                                <>
                                                     <button
-                                                        key={index}
-                                                        onClick={() => goToFourthImage(index)}
+                                                        onClick={prevFourthImage}
                                                         onMouseEnter={() => setIsFourthProjectAutoPlay(false)}
                                                         onMouseLeave={() => setIsFourthProjectAutoPlay(true)}
-                                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${index === fourthProjectImageIndex
-                                                            ? 'bg-white shadow-lg scale-125'
-                                                            : 'bg-white/60 hover:bg-white/80'
-                                                            }`}
-                                                    />
-                                                ))}
-                                            </div>
+                                                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                        </svg>
+                                                    </button>
+                                                    <button
+                                                        onClick={nextFourthImage}
+                                                        onMouseEnter={() => setIsFourthProjectAutoPlay(false)}
+                                                        onMouseLeave={() => setIsFourthProjectAutoPlay(true)}
+                                                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </button>
+                                                </>
+                                            )}
 
-                                            {/* Play/Pause Button */}
-                                            <button
-                                                onClick={() => setIsFourthProjectAutoPlay(!isFourthProjectAutoPlay)}
-                                                className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
-                                            >
-                                                {isFourthProjectAutoPlay ? (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                ) : (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
-                                                    </svg>
-                                                )}
-                                            </button>
+                                            {/* Slider Dots - Only show if more than 1 image */}
+                                            {fourthProject.images.length > 1 && (
+                                                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                                    {fourthProject.images.map((_, index) => (
+                                                        <button
+                                                            key={index}
+                                                            onClick={() => goToFourthImage(index)}
+                                                            onMouseEnter={() => setIsFourthProjectAutoPlay(false)}
+                                                            onMouseLeave={() => setIsFourthProjectAutoPlay(true)}
+                                                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === fourthProjectImageIndex
+                                                                ? 'bg-white shadow-lg scale-125'
+                                                                : 'bg-white/60 hover:bg-white/80'
+                                                                }`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            {/* Play/Pause Button - Only show if more than 1 image */}
+                                            {fourthProject.images.length > 1 && (
+                                                <button
+                                                    onClick={() => setIsFourthProjectAutoPlay(!isFourthProjectAutoPlay)}
+                                                    className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
+                                                >
+                                                    {isFourthProjectAutoPlay ? (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    ) : (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
+                                                        </svg>
+                                                    )}
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
 
@@ -1782,59 +1814,67 @@ export default function Projelerimiz() {
                                                 })}
                                             </div>
 
-                                            {/* Slider Navigation Buttons */}
-                                            <button
-                                                onClick={prevFifthImage}
-                                                onMouseEnter={() => setIsFifthProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsFifthProjectAutoPlay(true)}
-                                                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                                </svg>
-                                            </button>
-                                            <button
-                                                onClick={nextFifthImage}
-                                                onMouseEnter={() => setIsFifthProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsFifthProjectAutoPlay(true)}
-                                                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </button>
-
-                                            {/* Slider Dots */}
-                                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                                                {fifthProject.images.map((_, index) => (
+                                            {/* Slider Navigation Buttons - Only show if more than 1 image */}
+                                            {fifthProject.images.length > 1 && (
+                                                <>
                                                     <button
-                                                        key={index}
-                                                        onClick={() => goToFifthImage(index)}
+                                                        onClick={prevFifthImage}
                                                         onMouseEnter={() => setIsFifthProjectAutoPlay(false)}
                                                         onMouseLeave={() => setIsFifthProjectAutoPlay(true)}
-                                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${index === fifthProjectImageIndex
-                                                            ? 'bg-white shadow-lg scale-125'
-                                                            : 'bg-white/60 hover:bg-white/80'
-                                                            }`}
-                                                    />
-                                                ))}
-                                            </div>
+                                                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                        </svg>
+                                                    </button>
+                                                    <button
+                                                        onClick={nextFifthImage}
+                                                        onMouseEnter={() => setIsFifthProjectAutoPlay(false)}
+                                                        onMouseLeave={() => setIsFifthProjectAutoPlay(true)}
+                                                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </button>
+                                                </>
+                                            )}
 
-                                            {/* Play/Pause Button */}
-                                            <button
-                                                onClick={() => setIsFifthProjectAutoPlay(!isFifthProjectAutoPlay)}
-                                                className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
-                                            >
-                                                {isFifthProjectAutoPlay ? (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                ) : (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
-                                                    </svg>
-                                                )}
-                                            </button>
+                                            {/* Slider Dots - Only show if more than 1 image */}
+                                            {fifthProject.images.length > 1 && (
+                                                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                                    {fifthProject.images.map((_, index) => (
+                                                        <button
+                                                            key={index}
+                                                            onClick={() => goToFifthImage(index)}
+                                                            onMouseEnter={() => setIsFifthProjectAutoPlay(false)}
+                                                            onMouseLeave={() => setIsFifthProjectAutoPlay(true)}
+                                                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === fifthProjectImageIndex
+                                                                ? 'bg-white shadow-lg scale-125'
+                                                                : 'bg-white/60 hover:bg-white/80'
+                                                                }`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            {/* Play/Pause Button - Only show if more than 1 image */}
+                                            {fifthProject.images.length > 1 && (
+                                                <button
+                                                    onClick={() => setIsFifthProjectAutoPlay(!isFifthProjectAutoPlay)}
+                                                    className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
+                                                >
+                                                    {isFifthProjectAutoPlay ? (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    ) : (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
+                                                        </svg>
+                                                    )}
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
 
@@ -1954,59 +1994,67 @@ export default function Projelerimiz() {
                                                 })}
                                             </div>
 
-                                            {/* Slider Navigation Buttons */}
-                                            <button
-                                                onClick={prevSixthImage}
-                                                onMouseEnter={() => setIsSixthProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsSixthProjectAutoPlay(true)}
-                                                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                                </svg>
-                                            </button>
-                                            <button
-                                                onClick={nextSixthImage}
-                                                onMouseEnter={() => setIsSixthProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsSixthProjectAutoPlay(true)}
-                                                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </button>
-
-                                            {/* Slider Dots */}
-                                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                                                {sixthProject.images.map((_, index) => (
+                                            {/* Slider Navigation Buttons - Only show if more than 1 image */}
+                                            {sixthProject.images.length > 1 && (
+                                                <>
                                                     <button
-                                                        key={index}
-                                                        onClick={() => goToSixthImage(index)}
+                                                        onClick={prevSixthImage}
                                                         onMouseEnter={() => setIsSixthProjectAutoPlay(false)}
                                                         onMouseLeave={() => setIsSixthProjectAutoPlay(true)}
-                                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${index === sixthProjectImageIndex
-                                                            ? 'bg-white shadow-lg scale-125'
-                                                            : 'bg-white/60 hover:bg-white/80'
-                                                            }`}
-                                                    />
-                                                ))}
-                                            </div>
+                                                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                        </svg>
+                                                    </button>
+                                                    <button
+                                                        onClick={nextSixthImage}
+                                                        onMouseEnter={() => setIsSixthProjectAutoPlay(false)}
+                                                        onMouseLeave={() => setIsSixthProjectAutoPlay(true)}
+                                                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </button>
+                                                </>
+                                            )}
 
-                                            {/* Play/Pause Button */}
-                                            <button
-                                                onClick={() => setIsSixthProjectAutoPlay(!isSixthProjectAutoPlay)}
-                                                className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
-                                            >
-                                                {isSixthProjectAutoPlay ? (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                ) : (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
-                                                    </svg>
-                                                )}
-                                            </button>
+                                            {/* Slider Dots - Only show if more than 1 image */}
+                                            {sixthProject.images.length > 1 && (
+                                                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                                    {sixthProject.images.map((_, index) => (
+                                                        <button
+                                                            key={index}
+                                                            onClick={() => goToSixthImage(index)}
+                                                            onMouseEnter={() => setIsSixthProjectAutoPlay(false)}
+                                                            onMouseLeave={() => setIsSixthProjectAutoPlay(true)}
+                                                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === sixthProjectImageIndex
+                                                                ? 'bg-white shadow-lg scale-125'
+                                                                : 'bg-white/60 hover:bg-white/80'
+                                                                }`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            {/* Play/Pause Button - Only show if more than 1 image */}
+                                            {sixthProject.images.length > 1 && (
+                                                <button
+                                                    onClick={() => setIsSixthProjectAutoPlay(!isSixthProjectAutoPlay)}
+                                                    className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
+                                                >
+                                                    {isSixthProjectAutoPlay ? (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    ) : (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
+                                                        </svg>
+                                                    )}
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
 
@@ -2121,53 +2169,65 @@ export default function Projelerimiz() {
                                                     );
                                                 })}
                                             </div>
-                                            <button
-                                                onClick={prevSeventhImage}
-                                                onMouseEnter={() => setIsSeventhProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsSeventhProjectAutoPlay(true)}
-                                                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                                </svg>
-                                            </button>
-                                            <button
-                                                onClick={nextSeventhImage}
-                                                onMouseEnter={() => setIsSeventhProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsSeventhProjectAutoPlay(true)}
-                                                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </button>
-                                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                                                {seventhProject.images.map((_, index) => (
+                                            {/* Slider Navigation Buttons - Only show if more than 1 image */}
+                                            {seventhProject.images.length > 1 && (
+                                                <>
                                                     <button
-                                                        key={index}
-                                                        onClick={() => goToSeventhImage(index)}
+                                                        onClick={prevSeventhImage}
                                                         onMouseEnter={() => setIsSeventhProjectAutoPlay(false)}
                                                         onMouseLeave={() => setIsSeventhProjectAutoPlay(true)}
-                                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${index === seventhProjectImageIndex
-                                                            ? 'bg-white shadow-lg scale-125'
-                                                            : 'bg-white/60 hover:bg-white/80'}`}
-                                                    />
-                                                ))}
-                                            </div>
-                                            <button
-                                                onClick={() => setIsSeventhProjectAutoPlay(!isSeventhProjectAutoPlay)}
-                                                className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
-                                            >
-                                                {isSeventhProjectAutoPlay ? (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                ) : (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
-                                                    </svg>
-                                                )}
-                                            </button>
+                                                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                        </svg>
+                                                    </button>
+                                                    <button
+                                                        onClick={nextSeventhImage}
+                                                        onMouseEnter={() => setIsSeventhProjectAutoPlay(false)}
+                                                        onMouseLeave={() => setIsSeventhProjectAutoPlay(true)}
+                                                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </button>
+                                                </>
+                                            )}
+
+                                            {/* Slider Dots - Only show if more than 1 image */}
+                                            {seventhProject.images.length > 1 && (
+                                                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                                    {seventhProject.images.map((_, index) => (
+                                                        <button
+                                                            key={index}
+                                                            onClick={() => goToSeventhImage(index)}
+                                                            onMouseEnter={() => setIsSeventhProjectAutoPlay(false)}
+                                                            onMouseLeave={() => setIsSeventhProjectAutoPlay(true)}
+                                                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === seventhProjectImageIndex
+                                                                ? 'bg-white shadow-lg scale-125'
+                                                                : 'bg-white/60 hover:bg-white/80'}`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            )}
+                                            {/* Play/Pause Button - Only show if more than 1 image */}
+                                            {seventhProject.images.length > 1 && (
+                                                <button
+                                                    onClick={() => setIsSeventhProjectAutoPlay(!isSeventhProjectAutoPlay)}
+                                                    className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
+                                                >
+                                                    {isSeventhProjectAutoPlay ? (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    ) : (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
+                                                        </svg>
+                                                    )}
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
                                     <div className="flex flex-col justify-center">
@@ -2272,53 +2332,65 @@ export default function Projelerimiz() {
                                                     );
                                                 })}
                                             </div>
-                                            <button
-                                                onClick={prevEighthImage}
-                                                onMouseEnter={() => setIsEighthProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsEighthProjectAutoPlay(true)}
-                                                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                                </svg>
-                                            </button>
-                                            <button
-                                                onClick={nextEighthImage}
-                                                onMouseEnter={() => setIsEighthProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsEighthProjectAutoPlay(true)}
-                                                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </button>
-                                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                                                {eighthProject.images.map((_, index) => (
+                                            {/* Slider Navigation Buttons - Only show if more than 1 image */}
+                                            {eighthProject.images.length > 1 && (
+                                                <>
                                                     <button
-                                                        key={index}
-                                                        onClick={() => goToEighthImage(index)}
+                                                        onClick={prevEighthImage}
                                                         onMouseEnter={() => setIsEighthProjectAutoPlay(false)}
                                                         onMouseLeave={() => setIsEighthProjectAutoPlay(true)}
-                                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${index === eighthProjectImageIndex
-                                                            ? 'bg-white shadow-lg scale-125'
-                                                            : 'bg-white/60 hover:bg-white/80'}`}
-                                                    />
-                                                ))}
-                                            </div>
-                                            <button
-                                                onClick={() => setIsEighthProjectAutoPlay(!isEighthProjectAutoPlay)}
-                                                className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
-                                            >
-                                                {isEighthProjectAutoPlay ? (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                ) : (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
-                                                    </svg>
-                                                )}
-                                            </button>
+                                                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                        </svg>
+                                                    </button>
+                                                    <button
+                                                        onClick={nextEighthImage}
+                                                        onMouseEnter={() => setIsEighthProjectAutoPlay(false)}
+                                                        onMouseLeave={() => setIsEighthProjectAutoPlay(true)}
+                                                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </button>
+                                                </>
+                                            )}
+
+                                            {/* Slider Dots - Only show if more than 1 image */}
+                                            {eighthProject.images.length > 1 && (
+                                                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                                    {eighthProject.images.map((_, index) => (
+                                                        <button
+                                                            key={index}
+                                                            onClick={() => goToEighthImage(index)}
+                                                            onMouseEnter={() => setIsEighthProjectAutoPlay(false)}
+                                                            onMouseLeave={() => setIsEighthProjectAutoPlay(true)}
+                                                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === eighthProjectImageIndex
+                                                                ? 'bg-white shadow-lg scale-125'
+                                                                : 'bg-white/60 hover:bg-white/80'}`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            )}
+                                            {/* Play/Pause Button - Only show if more than 1 image */}
+                                            {eighthProject.images.length > 1 && (
+                                                <button
+                                                    onClick={() => setIsEighthProjectAutoPlay(!isEighthProjectAutoPlay)}
+                                                    className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
+                                                >
+                                                    {isEighthProjectAutoPlay ? (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    ) : (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
+                                                        </svg>
+                                                    )}
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
                                     <div className="flex flex-col justify-center">
@@ -2423,53 +2495,65 @@ export default function Projelerimiz() {
                                                     );
                                                 })}
                                             </div>
-                                            <button
-                                                onClick={prevNinthImage}
-                                                onMouseEnter={() => setIsNinthProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsNinthProjectAutoPlay(true)}
-                                                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                                </svg>
-                                            </button>
-                                            <button
-                                                onClick={nextNinthImage}
-                                                onMouseEnter={() => setIsNinthProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsNinthProjectAutoPlay(true)}
-                                                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </button>
-                                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                                                {ninthProject.images.map((_, index) => (
+                                            {/* Slider Navigation Buttons - Only show if more than 1 image */}
+                                            {ninthProject.images.length > 1 && (
+                                                <>
                                                     <button
-                                                        key={index}
-                                                        onClick={() => goToNinthImage(index)}
+                                                        onClick={prevNinthImage}
                                                         onMouseEnter={() => setIsNinthProjectAutoPlay(false)}
                                                         onMouseLeave={() => setIsNinthProjectAutoPlay(true)}
-                                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${index === ninthProjectImageIndex
-                                                            ? 'bg-white shadow-lg scale-125'
-                                                            : 'bg-white/60 hover:bg-white/80'}`}
-                                                    />
-                                                ))}
-                                            </div>
-                                            <button
-                                                onClick={() => setIsNinthProjectAutoPlay(!isNinthProjectAutoPlay)}
-                                                className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
-                                            >
-                                                {isNinthProjectAutoPlay ? (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                ) : (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
-                                                    </svg>
-                                                )}
-                                            </button>
+                                                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                        </svg>
+                                                    </button>
+                                                    <button
+                                                        onClick={nextNinthImage}
+                                                        onMouseEnter={() => setIsNinthProjectAutoPlay(false)}
+                                                        onMouseLeave={() => setIsNinthProjectAutoPlay(true)}
+                                                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </button>
+                                                </>
+                                            )}
+
+                                            {/* Slider Dots - Only show if more than 1 image */}
+                                            {ninthProject.images.length > 1 && (
+                                                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                                    {ninthProject.images.map((_, index) => (
+                                                        <button
+                                                            key={index}
+                                                            onClick={() => goToNinthImage(index)}
+                                                            onMouseEnter={() => setIsNinthProjectAutoPlay(false)}
+                                                            onMouseLeave={() => setIsNinthProjectAutoPlay(true)}
+                                                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === ninthProjectImageIndex
+                                                                ? 'bg-white shadow-lg scale-125'
+                                                                : 'bg-white/60 hover:bg-white/80'}`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            )}
+                                            {/* Play/Pause Button - Only show if more than 1 image */}
+                                            {ninthProject.images.length > 1 && (
+                                                <button
+                                                    onClick={() => setIsNinthProjectAutoPlay(!isNinthProjectAutoPlay)}
+                                                    className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
+                                                >
+                                                    {isNinthProjectAutoPlay ? (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    ) : (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
+                                                        </svg>
+                                                    )}
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
                                     <div className="flex flex-col justify-center">
@@ -2574,53 +2658,65 @@ export default function Projelerimiz() {
                                                     );
                                                 })}
                                             </div>
-                                            <button
-                                                onClick={prevTenthImage}
-                                                onMouseEnter={() => setIsTenthProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsTenthProjectAutoPlay(true)}
-                                                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                                </svg>
-                                            </button>
-                                            <button
-                                                onClick={nextTenthImage}
-                                                onMouseEnter={() => setIsTenthProjectAutoPlay(false)}
-                                                onMouseLeave={() => setIsTenthProjectAutoPlay(true)}
-                                                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                            >
-                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </button>
-                                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                                                {tenthProject.images.map((_, index) => (
+                                            {/* Slider Navigation Buttons - Only show if more than 1 image */}
+                                            {tenthProject.images.length > 1 && (
+                                                <>
                                                     <button
-                                                        key={index}
-                                                        onClick={() => goToTenthImage(index)}
+                                                        onClick={prevTenthImage}
                                                         onMouseEnter={() => setIsTenthProjectAutoPlay(false)}
                                                         onMouseLeave={() => setIsTenthProjectAutoPlay(true)}
-                                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${index === tenthProjectImageIndex
-                                                            ? 'bg-white shadow-lg scale-125'
-                                                            : 'bg-white/60 hover:bg-white/80'}`}
-                                                    />
-                                                ))}
-                                            </div>
-                                            <button
-                                                onClick={() => setIsTenthProjectAutoPlay(!isTenthProjectAutoPlay)}
-                                                className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
-                                            >
-                                                {isTenthProjectAutoPlay ? (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                ) : (
-                                                    <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
-                                                    </svg>
-                                                )}
-                                            </button>
+                                                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                        </svg>
+                                                    </button>
+                                                    <button
+                                                        onClick={nextTenthImage}
+                                                        onMouseEnter={() => setIsTenthProjectAutoPlay(false)}
+                                                        onMouseLeave={() => setIsTenthProjectAutoPlay(true)}
+                                                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </button>
+                                                </>
+                                            )}
+
+                                            {/* Slider Dots - Only show if more than 1 image */}
+                                            {tenthProject.images.length > 1 && (
+                                                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                                    {tenthProject.images.map((_, index) => (
+                                                        <button
+                                                            key={index}
+                                                            onClick={() => goToTenthImage(index)}
+                                                            onMouseEnter={() => setIsTenthProjectAutoPlay(false)}
+                                                            onMouseLeave={() => setIsTenthProjectAutoPlay(true)}
+                                                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === tenthProjectImageIndex
+                                                                ? 'bg-white shadow-lg scale-125'
+                                                                : 'bg-white/60 hover:bg-white/80'}`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            )}
+                                            {/* Play/Pause Button - Only show if more than 1 image */}
+                                            {tenthProject.images.length > 1 && (
+                                                <button
+                                                    onClick={() => setIsTenthProjectAutoPlay(!isTenthProjectAutoPlay)}
+                                                    className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
+                                                >
+                                                    {isTenthProjectAutoPlay ? (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    ) : (
+                                                        <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
+                                                        </svg>
+                                                    )}
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
                                     <div className="flex flex-col justify-center">
@@ -2738,53 +2834,65 @@ export default function Projelerimiz() {
                                                             );
                                                         })}
                                                     </div>
-                                                    <button
-                                                        onClick={projectPrevFunctions[index]}
-                                                        onMouseEnter={() => projectSetAutoPlays[index](false)}
-                                                        onMouseLeave={() => projectSetAutoPlays[index](true)}
-                                                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                                    >
-                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                                        </svg>
-                                                    </button>
-                                                    <button
-                                                        onClick={projectNextFunctions[index]}
-                                                        onMouseEnter={() => projectSetAutoPlays[index](false)}
-                                                        onMouseLeave={() => projectSetAutoPlays[index](true)}
-                                                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
-                                                    >
-                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                        </svg>
-                                                    </button>
-                                                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                                                        {project.images.map((_, imgIndex) => (
+                                                    {/* Slider Navigation Buttons - Only show if more than 1 image */}
+                                                    {project.images.length > 1 && (
+                                                        <>
                                                             <button
-                                                                key={imgIndex}
-                                                                onClick={() => projectGoToFunctions[index](imgIndex)}
+                                                                onClick={projectPrevFunctions[index]}
                                                                 onMouseEnter={() => projectSetAutoPlays[index](false)}
                                                                 onMouseLeave={() => projectSetAutoPlays[index](true)}
-                                                                className={`w-3 h-3 rounded-full transition-all duration-300 ${imgIndex === projectImageIndexes[index]
-                                                                    ? 'bg-white shadow-lg scale-125'
-                                                                    : 'bg-white/60 hover:bg-white/80'}`}
-                                                            />
-                                                        ))}
-                                                    </div>
-                                                    <button
-                                                        onClick={() => projectSetAutoPlays[index](!projectAutoPlays[index])}
-                                                        className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
-                                                    >
-                                                        {projectAutoPlays[index] ? (
-                                                            <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                            </svg>
-                                                        ) : (
-                                                            <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
-                                                            </svg>
-                                                        )}
-                                                    </button>
+                                                                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                            >
+                                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                                </svg>
+                                                            </button>
+                                                            <button
+                                                                onClick={projectNextFunctions[index]}
+                                                                onMouseEnter={() => projectSetAutoPlays[index](false)}
+                                                                onMouseLeave={() => projectSetAutoPlays[index](true)}
+                                                                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+                                                            >
+                                                                <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                                </svg>
+                                                            </button>
+                                                        </>
+                                                    )}
+
+                                                    {/* Slider Dots - Only show if more than 1 image */}
+                                                    {project.images.length > 1 && (
+                                                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                                            {project.images.map((_, imgIndex) => (
+                                                                <button
+                                                                    key={imgIndex}
+                                                                    onClick={() => projectGoToFunctions[index](imgIndex)}
+                                                                    onMouseEnter={() => projectSetAutoPlays[index](false)}
+                                                                    onMouseLeave={() => projectSetAutoPlays[index](true)}
+                                                                    className={`w-3 h-3 rounded-full transition-all duration-300 ${imgIndex === projectImageIndexes[index]
+                                                                        ? 'bg-white shadow-lg scale-125'
+                                                                        : 'bg-white/60 hover:bg-white/80'}`}
+                                                                />
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                    {/* Play/Pause Button - Only show if more than 1 image */}
+                                                    {project.images.length > 1 && (
+                                                        <button
+                                                            onClick={() => projectSetAutoPlays[index](!projectAutoPlays[index])}
+                                                            className="absolute top-4 right-4 w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
+                                                        >
+                                                            {projectAutoPlays[index] ? (
+                                                                <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                                </svg>
+                                                            ) : (
+                                                                <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-8-8h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z" />
+                                                                </svg>
+                                                            )}
+                                                        </button>
+                                                    )}
                                                 </div>
                                             </div>
                                             <div className="flex flex-col justify-center">
