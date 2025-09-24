@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
                                 </a>
 
                                 <a
-                                    href="https://www.linkedin.com/in/2b-global-enerji-049399384?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                                    href="https://www.linkedin.com/in/hakan-ispir-049399384/"
                                     className="flex items-center space-x-2 text-white/80 hover:text-blue-500 transition-colors group"
                                     target="_blank"
                                     rel="noopener noreferrer"

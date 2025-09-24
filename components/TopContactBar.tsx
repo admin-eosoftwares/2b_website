@@ -95,7 +95,7 @@ export default function TopContactBar() {
                         </a>
                         <div className="h-4 w-px bg-gray-300"></div>
                         <a
-                            href="https://www.linkedin.com/in/2b-global-enerji-049399384?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                            href="https://www.linkedin.com/in/hakan-ispir-049399384/"
                             className="text-black hover:text-blue-500 transition-all duration-300 transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                             aria-label="LinkedIn"
                             target="_blank"

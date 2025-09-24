@@ -1,8 +1,40 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { contactFormRateLimit, getClientIP } from '../../../utils/rateLimiter';
+import { logger, logApiRequest, logApiError, logFormSubmission } from '../../../utils/logger';
 
 export async function POST(request: NextRequest) {
+    const startTime = Date.now();
+    const clientIP = getClientIP(request);
+
     try {
+        // Rate limiting
+        const rateLimitResult = contactFormRateLimit(clientIP);
+
+        if (!rateLimitResult.allowed) {
+            logger.warn('Rate limit exceeded for contact form', {
+                clientIP,
+                remaining: rateLimitResult.remaining,
+                resetTime: rateLimitResult.resetTime
+            });
+
+            return NextResponse.json(
+                {
+                    error: 'Çok fazla istek gönderdiniz. Lütfen 15 dakika sonra tekrar deneyin.',
+                    retryAfter: Math.ceil((rateLimitResult.resetTime - Date.now()) / 1000)
+                },
+                {
+                    status: 429,
+                    headers: {
+                        'Retry-After': Math.ceil((rateLimitResult.resetTime - Date.now()) / 1000).toString(),
+                        'X-RateLimit-Limit': '5',
+                        'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+                        'X-RateLimit-Reset': rateLimitResult.resetTime.toString()
+                    }
+                }
+            );
+        }
+
         const body = await request.json();
         const { name, email, phone, subject, message } = body;
 
@@ -90,7 +122,20 @@ export async function POST(request: NextRequest) {
         // Send email
         await transporter.sendMail(mailOptions);
 
-        console.log('Email sent successfully to:', requiredEnvVars.CONTACT_EMAIL!);
+        const duration = Date.now() - startTime;
+        logApiRequest('POST', '/api/contact', 200, duration, { clientIP });
+        logFormSubmission('contact', true, {
+            clientIP,
+            email,
+            subject,
+            duration
+        });
+
+        logger.info('Email sent successfully', {
+            to: requiredEnvVars.CONTACT_EMAIL!,
+            clientIP,
+            duration
+        });
 
         return NextResponse.json(
             { message: 'Mesaj başarıyla gönderildi' },
@@ -98,7 +143,21 @@ export async function POST(request: NextRequest) {
         );
 
     } catch (error) {
-        console.error('Contact form error:', error);
+        const duration = Date.now() - startTime;
+        logApiError('POST', '/api/contact', error as Error, { clientIP });
+        logFormSubmission('contact', false, {
+            clientIP,
+            error: (error as Error).message,
+            duration
+        });
+
+        logger.error('Contact form error', {
+            clientIP,
+            error: (error as Error).message,
+            stack: (error as Error).stack,
+            duration
+        }, error as Error);
+
         return NextResponse.json(
             { error: 'Sunucu hatası' },
             { status: 500 }

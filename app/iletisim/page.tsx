@@ -147,14 +147,14 @@ export default function Iletisim() {
     return (
         <PageErrorBoundary pageName="İletişim">
             <div className="min-h-screen bg-[#f8f8ff] relative">
-                <div className="container mx-auto px-4 py-8 relative z-10">
+                <div className="container mx-auto px-4 py-8 pb-32 relative z-10">
                     <div className="max-w-7xl mx-auto">
                         {/* İletişim Section */}
                         <div
                             ref={iletisimRef}
                             className={`mb-32 transition-all duration-500 ease-out scroll-mt-24 ${iletisimVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                         >
-                            <div className="text-center mb-12">
+                            <div className="text-center mb-16">
                                 <h1 className="text-3xl sm:text-4xl font-bold text-blue-900 mb-4">
                                     İletişim
                                 </h1>
@@ -281,7 +281,7 @@ export default function Iletisim() {
                                                 </div>
                                             </a>
 
-                                            <a href="https://www.linkedin.com/in/2b-global-enerji-049399384?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer" className="group block bg-white rounded-xl p-4 border border-gray-200 hover:border-blue-400 hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
+                                            <a href="https://www.linkedin.com/in/hakan-ispir-049399384/" target="_blank" rel="noopener noreferrer" className="group block bg-white rounded-xl p-4 border border-gray-200 hover:border-blue-400 hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
                                                 <div className="flex items-center space-x-4">
                                                     <div className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300" style={{ backgroundColor: '#0077B5' }}>
                                                         <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">

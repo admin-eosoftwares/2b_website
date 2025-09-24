@@ -70,7 +70,7 @@ export default function Hakkimizda() {
         <PageErrorBoundary pageName="Hakkımızda">
             <div className="min-h-screen bg-[#f8f8ff] relative">
 
-                <div className="container mx-auto px-4 py-8 relative z-10">
+                <div className="container mx-auto px-4 py-8 pb-32 relative z-10">
                     <div className="max-w-7xl mx-auto">
                         {/* Biz Kimiz Section */}
                         <div
@@ -78,7 +78,7 @@ export default function Hakkimizda() {
                             id="biz-kimiz"
                             className={`mb-20 transition-all duration-500 ease-out scroll-mt-24 ${bizKimizVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                         >
-                            <div className="text-center mb-12">
+                            <div className="text-center mb-16">
                                 <h1 className="text-3xl sm:text-4xl font-bold text-blue-900 mb-4">
                                     Biz Kimiz?
                                 </h1>

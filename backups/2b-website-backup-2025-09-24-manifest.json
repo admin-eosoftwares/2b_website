@@ -1,0 +1,34 @@
+{
+  "timestamp": "2025-09-24T07:20:47.738Z",
+  "backupName": "2b-website-backup-2025-09-24",
+  "files": [
+    {
+      "name": "2b-website-backup-2025-09-24.tar.gz",
+      "path": "C:\\my_projects\\2b_website\\backups\\2b-website-backup-2025-09-24.tar.gz",
+      "size": 98561486,
+      "created": "2025-09-24T07:20:47.738Z"
+    },
+    {
+      "name": "2b-website-backup-2025-09-24-environment-.env.local",
+      "path": "C:\\my_projects\\2b_website\\backups\\2b-website-backup-2025-09-24-environment-.env.local",
+      "size": 336,
+      "created": "2025-09-24T07:20:47.738Z"
+    },
+    {
+      "name": "2b-website-backup-2025-09-24-package-files-package.json",
+      "path": "C:\\my_projects\\2b_website\\backups\\2b-website-backup-2025-09-24-package-files-package.json",
+      "size": 1271,
+      "created": "2025-09-24T07:20:47.738Z"
+    },
+    {
+      "name": "2b-website-backup-2025-09-24-package-lock-package-lock.json",
+      "path": "C:\\my_projects\\2b_website\\backups\\2b-website-backup-2025-09-24-package-lock-package-lock.json",
+      "size": 450828,
+      "created": "2025-09-24T07:20:47.738Z"
+    }
+  ],
+  "totalSize": 99013921,
+  "version": "0.1.0",
+  "nodeVersion": "v22.19.0",
+  "platform": "win32"
+}

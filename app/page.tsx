@@ -196,7 +196,7 @@ export default function Home() {
         </div>
 
         {/* Modern Kartlar - Web Tasarımı + Mobil Optimizasyon */}
-        <div className="w-full py-8 sm:py-12 lg:py-16 pb-24 sm:pb-20 lg:pb-32">
+        <div className="w-full py-8 sm:py-12 lg:py-16 pb-32">
           <div className="container mx-auto px-4">
             {/* Mobil için ayrı tasarım */}
             <div className="block lg:hidden">
