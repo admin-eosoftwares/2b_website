@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import ErrorBoundary from './ErrorBoundary';
 
 interface SafeComponentProps {
@@ -58,9 +57,21 @@ const SafeComponent: React.FC<SafeComponentProps> = ({
         </div>
     );
 
+    // String fallback'i JSX'e çevir
+    const renderFallback = () => {
+        if (typeof fallback === 'string') {
+            return (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4 m-4 text-center">
+                    <p className="text-red-600">{fallback}</p>
+                </div>
+            );
+        }
+        return fallback || defaultFallback;
+    };
+
     return (
         <ErrorBoundary
-            fallback={fallback || defaultFallback}
+            fallback={renderFallback()}
             onError={onError}
         >
             {children}
@@ -68,102 +79,22 @@ const SafeComponent: React.FC<SafeComponentProps> = ({
     );
 };
 
-// Özel fallback bileşenleri
+// Özel fallback bileşenleri - basit string'ler
 export const SafeComponentFallbacks = {
     // Header için özel fallback
-    Header: (
-        <div className="bg-red-50 border-b border-red-200 p-4">
-            <div className="container mx-auto flex items-center justify-between">
-                <div className="flex items-center">
-                    <Image
-                        src="/2b_logo_sag.png"
-                        alt="2B Global Enerji"
-                        width={48}
-                        height={48}
-                        className="h-12 w-auto"
-                    />
-                </div>
-                <div className="text-red-600 text-sm">
-                    Navigasyon yüklenemedi
-                </div>
-            </div>
-        </div>
-    ),
+    Header: "Header yüklenemedi",
 
     // Footer için özel fallback
-    Footer: (
-        <div className="bg-red-50 border-t border-red-200 p-8 text-center">
-            <div className="max-w-6xl mx-auto">
-                <p className="text-red-600 mb-4">
-                    Footer yüklenemedi
-                </p>
-                <div className="text-sm text-red-500">
-                    <a href="tel:+902423246077" className="hover:text-red-700">
-                        0242 324 60 77
-                    </a>
-                    <span className="mx-2">•</span>
-                    <a href="mailto:info@2bltd.com.tr" className="hover:text-red-700">
-                        info@2bltd.com.tr
-                    </a>
-                </div>
-            </div>
-        </div>
-    ),
+    Footer: "Footer yüklenemedi",
 
     // Form için özel fallback
-    ContactForm: (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-red-800 mb-2">
-                İletişim Formu Yüklenemedi
-            </h3>
-            <p className="text-red-600 mb-4">
-                Form geçici olarak kullanılamıyor. Lütfen telefon ile iletişime geçin.
-            </p>
-            <div className="space-y-2">
-                <a
-                    href="tel:+902423246077"
-                    className="block bg-red-600 text-white px-4 py-2 rounded text-center hover:bg-red-700"
-                >
-                    0242 324 60 77
-                </a>
-                <a
-                    href="mailto:info@2bltd.com.tr"
-                    className="block bg-red-600 text-white px-4 py-2 rounded text-center hover:bg-red-700"
-                >
-                    E-posta Gönder
-                </a>
-            </div>
-        </div>
-    ),
+    ContactForm: "İletişim formu yüklenemedi",
 
     // Harita için özel fallback
-    Map: (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-            <h3 className="text-lg font-semibold text-red-800 mb-2">
-                Harita Yüklenemedi
-            </h3>
-            <p className="text-red-600 mb-4">
-                Harita geçici olarak görüntülenemiyor.
-            </p>
-            <a
-                href="https://maps.google.com/maps?q=Bahçeyaka+Mah.+Atatürk+Cad.+No+375/A+Döşemealtı+ANTALYA"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-            >
-                Google Maps&apos;te Aç
-            </a>
-        </div>
-    ),
+    Map: "Harita yüklenemedi",
 
     // Proje kartları için özel fallback
-    ProjectCard: (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
-            <p className="text-red-600 text-sm">
-                Proje bilgileri yüklenemedi
-            </p>
-        </div>
-    )
+    ProjectCard: "Proje bilgileri yüklenemedi"
 };
 
 export default SafeComponent;

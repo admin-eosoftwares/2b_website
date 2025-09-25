@@ -38,6 +38,8 @@ export interface UseNavigationReturn {
     closeDropdown: () => void;
     setIsLoaded: (loaded: boolean) => void;
     setIsAboutDropdownOpen: (open: boolean) => void;
+    handleMouseEnter: () => void;
+    handleMouseLeave: () => void;
 
     // Refs
     dropdownRef: React.RefObject<HTMLDivElement | null>;

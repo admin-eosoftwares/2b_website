@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import PageErrorBoundary from '../components/PageErrorBoundary';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useAnalytics } from '../components/GoogleAnalytics';
@@ -8,6 +9,7 @@ import { useAnalytics } from '../components/GoogleAnalytics';
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const router = useRouter();
 
   // Analytics hook
   const { trackEvent } = useAnalytics();
@@ -28,16 +30,18 @@ export default function Home() {
   const { elementRef: card5Ref, isVisible: card5Visible } = useScrollAnimation({ delay: 150, threshold: 0.1 });
   const { elementRef: card6Ref, isVisible: card6Visible } = useScrollAnimation({ delay: 300, threshold: 0.1 });
 
-  // Debug: Kartların görünürlük durumunu kontrol et
+  // Debug: Kartların görünürlük durumunu kontrol et (development only)
   useEffect(() => {
-    console.log('Card visibility states:', {
-      card1: card1Visible,
-      card2: card2Visible,
-      card3: card3Visible,
-      card4: card4Visible,
-      card5: card5Visible,
-      card6: card6Visible
-    });
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Card visibility states:', {
+        card1: card1Visible,
+        card2: card2Visible,
+        card3: card3Visible,
+        card4: card4Visible,
+        card5: card5Visible,
+        card6: card6Visible
+      });
+    }
   }, [card1Visible, card2Visible, card3Visible, card4Visible, card5Visible, card6Visible]);
 
   useEffect(() => {
@@ -51,18 +55,24 @@ export default function Home() {
   // Ekran boyutunu kontrol et
   useEffect(() => {
     const checkScreenSize = () => {
-      const mobile = window.innerWidth <= 768;
-      setIsMobile(mobile);
+      if (typeof window !== 'undefined') {
+        const mobile = window.innerWidth < 1024; // lg breakpoint (1024px)
+        setIsMobile(mobile);
+      }
     };
 
     // İlk yüklemede kontrol et
     checkScreenSize();
 
     // Ekran boyutu değişikliklerini dinle
-    window.addEventListener('resize', checkScreenSize);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', checkScreenSize);
+    }
 
     return () => {
-      window.removeEventListener('resize', checkScreenSize);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', checkScreenSize);
+      }
     };
   }, []);
 
@@ -100,7 +110,7 @@ export default function Home() {
             "name": "2B Global Enerji",
             "alternateName": "2B Global Enerji San. Tic. Ltd. Şti.",
             "url": "https://2bltd.com.tr",
-            "logo": "https://2bltd.com.tr/2b_logo_sag.png",
+            "logo": "https://2bltd.com.tr/images/logos/2b_logo_sag.avif",
             "description": "Antalya merkezli yenilenebilir enerji ve elektrik-elektronik sektörlerinde 20+ yıllık deneyim.",
             "foundingDate": "2003",
             "address": {
@@ -165,7 +175,7 @@ export default function Home() {
               {!isMobile ? (
                 <video
                   className="max-w-full h-auto object-contain"
-                  src="/2b_website_gesvideo.mp4"
+                  src="/2b_website_gesvideo_optimized.mp4"
                   autoPlay
                   muted
                   playsInline
@@ -179,7 +189,7 @@ export default function Home() {
               ) : (
                 <video
                   className="max-w-full h-auto object-contain"
-                  src="/2b_website_gesvideomobil.mp4"
+                  src="/2b_website_gesvideomobil_optimized.mp4"
                   autoPlay
                   muted
                   playsInline
@@ -196,9 +206,9 @@ export default function Home() {
         </div>
 
         {/* Modern Kartlar - Web Tasarımı + Mobil Optimizasyon */}
-        <div className="w-full py-8 sm:py-12 lg:py-16 pb-32">
+        <div className="w-full py-8 sm:py-12 lg:py-16" style={{ paddingBottom: '4rem' }}>
           <div className="container mx-auto px-4">
-            {/* Mobil için ayrı tasarım */}
+            {/* Mobil ve tablet için ayrı tasarım */}
             <div className="block lg:hidden">
               <div className="max-w-none mx-auto space-y-6">
                 {/* Mobil: Kaliteli Hizmet Kartı */}
@@ -335,8 +345,8 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Mobil: İlk 3 kart ile son 3 kart arası boşluk */}
-                <div className="mt-20 mb-12"></div>
+                {/* Mobil: İlk 3 kart ile son 3 kart arası büyük boşluk */}
+                <div style={{ marginTop: '4rem', marginBottom: '2rem' }}></div>
 
                 {/* Mobil: Aksiyon Kartları */}
                 <div className="grid grid-cols-1 gap-6">
@@ -347,7 +357,7 @@ export default function Home() {
                     <div
                       onClick={() => {
                         trackEvent('click', 'Navigation', 'Projelerimiz');
-                        window.location.href = '/projelerimiz';
+                        router.push('/projelerimiz');
                       }}
                       className="group relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-102 active:scale-95 transition-all duration-300 cursor-pointer border border-blue-200 h-[280px] flex flex-col justify-between overflow-hidden touch-manipulation"
                     >
@@ -389,7 +399,7 @@ export default function Home() {
                     <div
                       onClick={() => {
                         trackEvent('click', 'Navigation', 'Hakkımızda');
-                        window.location.href = '/hakkimizda';
+                        router.push('/hakkimizda');
                       }}
                       className="group relative bg-gradient-to-br from-rose-50 to-pink-100 rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-rose-500/20 hover:scale-102 active:scale-95 transition-all duration-300 cursor-pointer border border-rose-200 h-[280px] flex flex-col justify-between overflow-hidden touch-manipulation"
                     >
@@ -431,8 +441,7 @@ export default function Home() {
                     <div
                       onClick={() => {
                         trackEvent('click', 'Navigation', 'İletişim');
-                        sessionStorage.setItem('scrollToId', 'bize-ulasin');
-                        window.location.href = '/iletisim#bize-ulasin';
+                        router.push('/iletisim');
                       }}
                       className="group relative bg-gradient-to-br from-purple-50 to-violet-100 rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 hover:scale-102 active:scale-95 transition-all duration-300 cursor-pointer border border-purple-200 h-[280px] flex flex-col justify-between overflow-hidden touch-manipulation"
                     >
@@ -623,8 +632,8 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* İlk 3 kart ile son 3 kart arası çok büyük boşluk */}
-                <div className="mt-32 mb-16"></div>
+                {/* İlk 3 kart ile son 3 kart arası büyük boşluk */}
+                <div style={{ marginTop: '6rem', marginBottom: '3rem' }}></div>
 
                 {/* Modern Aksiyon Kartları - Web Tasarımı */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -636,7 +645,7 @@ export default function Home() {
                     <div
                       onClick={() => {
                         trackEvent('click', 'Navigation', 'Projelerimiz');
-                        window.location.href = '/projelerimiz';
+                        router.push('/projelerimiz');
                       }}
                       className="group relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-105 transition-all duration-400 cursor-pointer border border-blue-200 h-[380px] flex flex-col justify-between overflow-hidden"
                     >
@@ -686,7 +695,7 @@ export default function Home() {
                     <div
                       onClick={() => {
                         trackEvent('click', 'Navigation', 'Hakkımızda');
-                        window.location.href = '/hakkimizda';
+                        router.push('/hakkimizda');
                       }}
                       className="group relative bg-gradient-to-br from-rose-50 to-pink-100 rounded-2xl p-8 hover:shadow-2xl hover:shadow-rose-500/20 hover:scale-105 transition-all duration-400 cursor-pointer border border-rose-200 h-[380px] flex flex-col justify-between overflow-hidden"
                     >
@@ -736,8 +745,7 @@ export default function Home() {
                     <div
                       onClick={() => {
                         trackEvent('click', 'Navigation', 'İletişim');
-                        sessionStorage.setItem('scrollToId', 'bize-ulasin');
-                        window.location.href = '/iletisim#bize-ulasin';
+                        router.push('/iletisim');
                       }}
                       className="group relative bg-gradient-to-br from-purple-50 to-violet-100 rounded-2xl p-8 hover:shadow-2xl hover:shadow-purple-500/20 hover:scale-105 transition-all duration-400 cursor-pointer border border-purple-200 h-[380px] flex flex-col justify-between overflow-hidden"
                     >

@@ -25,6 +25,7 @@ const NavLink = React.memo(function NavLink({ item, isActive, className = '', on
     ${isActive ? CSS_CLASSES.underlineActive : CSS_CLASSES.underlineInactive}
   `.trim();
 
+
     return (
         <a
             href={item.href}

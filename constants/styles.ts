@@ -12,18 +12,19 @@ export const CSS_CLASSES = {
     // Underline animation
     underlineBase: "absolute -bottom-1 left-1/2 h-0.5 transition-all duration-300 transform -translate-x-1/2",
     underlineActive: "w-full bg-black group-hover:bg-blue-900",
-    underlineInactive: "w-0 bg-blue-900 group-hover:w-full",
+    underlineInactive: "w-0 bg-blue-900 group-hover:w-full group-hover:bg-blue-900",
 
     // Dropdown styles
-    dropdownContainer: "absolute top-full left-1/2 transform -translate-x-1/2 pt-2 w-56 transition-all duration-300 ease-in-out",
-    dropdownContent: "rounded-xl bg-[#f8f8ff]/97 backdrop-blur shadow-lg p-2 overflow-hidden transition-all duration-300 ease-in-out",
+    dropdownContainer: "absolute top-full left-1/2 transform -translate-x-1/2 pt-2 w-56 z-[999999]",
+    dropdownContent: "rounded-xl bg-[#f8f8ff] backdrop-blur-md shadow-lg p-2 overflow-hidden border border-gray-200",
     dropdownItem: "block px-4 py-3 text-sm font-medium text-gray-800 hover:text-blue-900 hover:bg-blue-50 rounded-lg transition-all duration-200",
     dropdownDivider: "border-t border-gray-200 my-1",
 
     // Mobile menu styles
     mobileOverlay: "lg:hidden fixed inset-0 z-[9999] transition-opacity duration-300 ease-in-out",
     mobileBackdrop: "absolute inset-0 bg-black/20",
-    mobilePanel: "absolute right-0 top-0 h-screen w-[62.5vw] bg-[#f8f8ff]/95 backdrop-blur-md shadow-2xl transform transition-transform duration-300 ease-in-out",
+    // Anchor to both top and bottom so panel always spans overlay height
+    mobilePanel: "absolute right-0 top-0 bottom-0 h-full w-[62.5vw] bg-[#f8f8ff]/95 backdrop-blur-md shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col",
     mobileHeader: "flex items-center justify-between h-24 px-6 py-0 border-b-2 border-blue-900 bg-[#f8f8ff]",
     mobileNavItem: "block py-4 text-lg font-medium text-gray-700 hover:text-blue-700 hover:bg-blue-50/50 transition-all duration-200 border-b border-blue-900/20 rounded-lg",
     mobileSubItem: "block px-6 py-3 text-base text-gray-600 hover:text-blue-700 hover:bg-blue-50/30 transition-all duration-200 rounded-lg",
@@ -33,7 +34,7 @@ export const CSS_CLASSES = {
     mobileButton: "inline-flex items-center justify-center w-full rounded-lg bg-blue-900 px-6 py-4 text-white text-lg font-medium hover:bg-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg",
 
     // Header styles
-    header: "sticky top-0 z-50 bg-[#f8f8ff]/90 backdrop-blur-md transition-all duration-300 ease-out",
+    header: "fixed left-0 right-0 z-50 bg-[#f8f8ff]/90 backdrop-blur-md transition-all duration-300 ease-out",
     headerLoaded: "translate-y-0 opacity-100",
     headerLoading: "translate-y-4 opacity-0",
 

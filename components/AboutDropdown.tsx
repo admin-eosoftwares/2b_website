@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { ABOUT_DROPDOWN_ITEMS } from '../constants/navigation';
 import { CSS_CLASSES } from '../constants/styles';
 import { useSmoothScroll } from '../hooks/useSmoothScroll';
@@ -19,7 +20,47 @@ const AboutDropdown = React.memo(function AboutDropdown({
     isActive
 }: AboutDropdownProps) {
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
+    const [mounted, setMounted] = useState(false);
     const { handleClick } = useSmoothScroll();
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    const handleMouseEnter = useCallback(() => {
+        if (closeTimeoutRef.current) {
+            clearTimeout(closeTimeoutRef.current);
+            closeTimeoutRef.current = null;
+        }
+        onMouseEnter();
+    }, [onMouseEnter]);
+
+    const handleMouseLeave = useCallback(() => {
+        closeTimeoutRef.current = setTimeout(() => {
+            onMouseLeave();
+        }, 150); // 150ms gecikme
+    }, [onMouseLeave]);
+
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (closeTimeoutRef.current) {
+                clearTimeout(closeTimeoutRef.current);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        if (isOpen && dropdownRef.current) {
+            const rect = dropdownRef.current.getBoundingClientRect();
+            setDropdownPosition({
+                top: rect.bottom + 8,
+                left: rect.left + rect.width / 2
+            });
+        }
+    }, [isOpen]);
 
     const linkClasses = `
     ${CSS_CLASSES.navLink}
@@ -33,22 +74,50 @@ const AboutDropdown = React.memo(function AboutDropdown({
     ${isActive ? 'w-full bg-black group-hover:bg-blue-900' : isOpen ? 'w-full bg-blue-900' : 'w-0 bg-blue-900 group-hover:w-full'}
   `.trim();
 
-    const dropdownContainerClasses = `
-    ${CSS_CLASSES.dropdownContainer}
-    ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}
-  `.trim();
-
     const dropdownContentClasses = `
     ${CSS_CLASSES.dropdownContent}
-    ${isOpen ? 'max-h-96' : 'max-h-0'}
+    transition-all duration-200 ease-out
+    ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'}
   `.trim();
+
+    const dropdownMenu = isOpen && mounted ? createPortal(
+        <div
+            className="fixed w-56 z-[999999]"
+            style={{
+                top: dropdownPosition.top,
+                left: dropdownPosition.left,
+                transform: 'translateX(-50%)'
+            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
+            <div className={dropdownContentClasses}>
+                {ABOUT_DROPDOWN_ITEMS.map((item, index) => (
+                    <div key={item.key}>
+                        <a
+                            href={item.href}
+                            className={`${CSS_CLASSES.dropdownItem} ${CSS_CLASSES.focus}`}
+                            data-testid={`dropdown-item-${item.key}`}
+                            onClick={(e) => handleClick(e, item.href)}
+                        >
+                            {item.label}
+                        </a>
+                        {index < ABOUT_DROPDOWN_ITEMS.length - 1 && (
+                            <div className={CSS_CLASSES.dropdownDivider}></div>
+                        )}
+                    </div>
+                ))}
+            </div>
+        </div>,
+        document.body
+    ) : null;
 
     return (
         <div
             className="relative group"
             ref={dropdownRef}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             data-testid="about-dropdown"
         >
             <a
@@ -58,26 +127,7 @@ const AboutDropdown = React.memo(function AboutDropdown({
                 Hakkımızda
             </a>
             <span className={underlineClasses}></span>
-
-            <div className={dropdownContainerClasses}>
-                <div className={dropdownContentClasses}>
-                    {ABOUT_DROPDOWN_ITEMS.map((item, index) => (
-                        <div key={item.key}>
-                            <a
-                                href={item.href}
-                                className={`${CSS_CLASSES.dropdownItem} ${CSS_CLASSES.focus}`}
-                                data-testid={`dropdown-item-${item.key}`}
-                                onClick={(e) => handleClick(e, item.href)}
-                            >
-                                {item.label}
-                            </a>
-                            {index < ABOUT_DROPDOWN_ITEMS.length - 1 && (
-                                <div className={CSS_CLASSES.dropdownDivider}></div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
+            {dropdownMenu}
         </div>
     );
 });

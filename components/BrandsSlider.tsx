@@ -11,12 +11,12 @@ export default function BrandsSlider() {
     const [previousMobileSlide, setPreviousMobileSlide] = useState(0);
 
     const brands = [
-        { name: 'Varta', logo: '/varta-logo.png' },
-        { name: 'CW Enerji', logo: '/cw-enerji-logo.png' },
-        { name: 'Tommatech', logo: '/tommatech-logo.png' },
-        { name: 'Orbus', logo: '/orbus-logo.png' },
-        { name: 'Panther', logo: '/panther-logo.png' },
-        { name: 'Avec', logo: '/avec-logo.png' }
+        { name: 'Varta', logo: '/images/brands/varta-logo.avif' },
+        { name: 'CW Enerji', logo: '/images/brands/cw-enerji-logo.avif' },
+        { name: 'Tommatech', logo: '/images/brands/tommatech-logo.avif' },
+        { name: 'Orbus', logo: '/images/brands/orbus-logo.webp' },
+        { name: 'Panther', logo: '/images/brands/panther-logo.avif' },
+        { name: 'Avec', logo: '/images/brands/avec-logo.avif' }
     ];
 
     const slides = [];

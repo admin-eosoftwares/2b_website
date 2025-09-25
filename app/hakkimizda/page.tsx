@@ -70,7 +70,7 @@ export default function Hakkimizda() {
         <PageErrorBoundary pageName="Hakkımızda">
             <div className="min-h-screen bg-[#f8f8ff] relative">
 
-                <div className="container mx-auto px-4 py-8 pb-32 relative z-10">
+                <div className="container mx-auto px-4 py-8 pb-4 sm:pb-16 relative z-10">
                     <div className="max-w-7xl mx-auto">
                         {/* Biz Kimiz Section */}
                         <div
@@ -94,7 +94,7 @@ export default function Hakkimizda() {
                                     <div className="flex items-center mb-6">
                                         <div className="w-12 h-12 mr-4">
                                             <Image
-                                                src="/2b_logo2.png"
+                                                src="/images/logos/2b_logo2.avif"
                                                 alt="2B Global Enerji Logo"
                                                 width={48}
                                                 height={48}
@@ -364,7 +364,7 @@ export default function Hakkimizda() {
                         <div
                             ref={vizyonMisyonRef}
                             id="vizyon-misyon"
-                            className={`mb-32 transition-all duration-500 ease-out scroll-mt-24 ${vizyonMisyonVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+                            className={`mb-16 sm:mb-32 transition-all duration-500 ease-out scroll-mt-24 ${vizyonMisyonVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                         >
                             <div className="text-center mb-12">
                                 <h2 className="text-2xl sm:text-3xl font-bold text-blue-900 mb-4">

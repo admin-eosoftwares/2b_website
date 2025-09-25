@@ -63,7 +63,7 @@ export default function MobileMenu() {
                     {/* Logo */}
                     <div className="flex-shrink-0">
                         <Image
-                            src="/2b_logo_sag.png"
+                            src="/images/logos/2b_logo_sag.avif"
                             alt="2B Logo"
                             width={120}
                             height={60}

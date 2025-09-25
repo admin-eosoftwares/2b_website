@@ -24,21 +24,27 @@ export function useScrollAnimation(options: UseScrollAnimationOptions = {}) {
 
         const observer = new IntersectionObserver(
             ([entry]) => {
-                console.log('IntersectionObserver triggered:', {
-                    isIntersecting: entry.isIntersecting,
-                    delay,
-                    isMobile,
-                    element: element.tagName
-                });
+                if (process.env.NODE_ENV === 'development') {
+                    console.log('IntersectionObserver triggered:', {
+                        isIntersecting: entry.isIntersecting,
+                        delay,
+                        isMobile,
+                        element: element.tagName
+                    });
+                }
 
                 if (entry.isIntersecting) {
                     if (delay > 0) {
                         setTimeout(() => {
-                            console.log('Setting visible to true after delay:', delay);
+                            if (process.env.NODE_ENV === 'development') {
+                                console.log('Setting visible to true after delay:', delay);
+                            }
                             setIsVisible(true);
                         }, delay);
                     } else {
-                        console.log('Setting visible to true immediately');
+                        if (process.env.NODE_ENV === 'development') {
+                            console.log('Setting visible to true immediately');
+                        }
                         setIsVisible(true);
                     }
                 }

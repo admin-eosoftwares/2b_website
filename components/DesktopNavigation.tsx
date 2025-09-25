@@ -24,13 +24,19 @@ const DesktopNavigation = React.memo(function DesktopNavigation({
     return (
         <div className="hidden lg:flex lg:items-center xl:space-x-8 lg:space-x-4" data-testid="desktop-navigation">
             {/* Navigation Items */}
-            {NAV_ITEMS.map((item) => (
-                <NavLink
-                    key={item.key}
-                    item={item}
-                    isActive={pathname === item.href}
-                />
-            ))}
+            {NAV_ITEMS.map((item) => {
+                // Daha esnek karşılaştırma - trailing slash'leri göz ardı et
+                const normalizedPathname = pathname.replace(/\/$/, '') || '/';
+                const normalizedHref = item.href.replace(/\/$/, '') || '/';
+                const isActive = normalizedPathname === normalizedHref;
+                return (
+                    <NavLink
+                        key={item.key}
+                        item={item}
+                        isActive={isActive}
+                    />
+                );
+            })}
 
             {/* About Dropdown */}
             <DynamicAboutDropdown

@@ -1,81 +1,177 @@
-# CPanel Deployment Rehberi
+# 2B Website - cPanel Deployment Rehberi
 
-## Gerekli Dosyalar
+## 🚀 cPanel'e Yayınlama Adımları
 
-- Tüm proje dosyaları
-- `.env.production` dosyası
-- `package.json` ve `package-lock.json`
-- `next.config.ts`
-- `tsconfig.json`
+### Ön Hazırlık
 
-## CPanel'de Yapılacaklar
+1. **Projeyi Build Edin**
 
-### 1. Node.js Uygulaması Oluşturma
+   ```bash
+   npm run build
+   ```
 
-1. CPanel → "Node.js" bölümüne gidin
-2. "Create Application" butonuna tıklayın
-3. Ayarlar:
-   - **Application Root**: `/public_html/2b-website` (veya istediğiniz klasör)
-   - **Application URL**: `2bltd.com.tr` (veya subdomain)
-   - **Node.js Version**: 18.x veya üzeri
+   Bu komut `out` klasörü oluşturacak.
 
-### 2. Dosyaları Yükleme
+2. **Gerekli Dosyaları Hazırlayın**
+   - `out` klasörünün tüm içeriği
+   - `.htaccess` dosyası (proje kök dizinindeki)
+   - `favicon.ico` (eğer varsa)
 
-1. File Manager ile proje dosyalarını yükleyin
-2. `.env.production` dosyasını `.env` olarak yeniden adlandırın
-3. `node_modules` klasörünü yüklemeyin (otomatik oluşturulacak)
+### cPanel'e Yükleme
 
-### 3. Bağımlılıkları Yükleme
+#### Yöntem 1: Dosya Yöneticisi ile (Önerilen)
 
-CPanel Terminal'de:
+1. **cPanel'e Giriş Yapın**
+   - Hosting sağlayıcınızın cPanel paneline giriş yapın
 
-```bash
-cd /home/username/public_html/2b-website
-npm install --production
-```
+2. **Dosya Yöneticisi'ni Açın**
+   - "Dosya Yöneticisi" veya "File Manager" seçeneğini bulun
+   - `public_html` klasörüne gidin
 
-### 4. Uygulamayı Başlatma
+3. **Mevcut Dosyaları Yedekleyin** (Eğer varsa)
+   - Mevcut website dosyalarınızı yedekleyin
+   - `public_html` klasörünü boşaltın
 
-CPanel Node.js bölümünde:
+4. **Yeni Dosyaları Yükleyin**
+   - `out` klasörünün tüm içeriğini `public_html` klasörüne yükleyin
+   - `.htaccess` dosyasını `public_html` klasörüne kopyalayın
+   - `favicon.ico` dosyasını `public_html` klasörüne kopyalayın
 
-1. "Start App" butonuna tıklayın
-2. Port: 3000 (varsayılan)
-3. Application URL'i not edin
+5. **Dosya İzinlerini Kontrol Edin**
+   - `.htaccess` dosyasının izinlerini 644 yapın
+   - Klasörlerin izinlerini 755 yapın
+   - Diğer dosyaların izinlerini 644 yapın
 
-### 5. Domain Yönlendirme
+#### Yöntem 2: ZIP Upload ile
 
-1. CPanel → "Subdomains" veya "Addon Domains"
-2. `2bltd.com.tr` domain'ini uygulama URL'ine yönlendirin
-3. Veya Nginx/Apache yapılandırması yapın
+1. **ZIP Dosyası Oluşturun**
 
-### 6. SSL Sertifikası
+   ```bash
+   # out klasörünün içeriğini ve .htaccess dosyasını ZIP'e paketleyin
+   ```
 
-1. CPanel → "SSL/TLS"
-2. "Let's Encrypt" ile ücretsiz SSL alın
-3. Domain'i HTTPS'e yönlendirin
+2. **cPanel'de ZIP'i Yükleyin**
+   - Dosya Yöneticisi'nde `public_html` klasörüne ZIP'i yükleyin
+   - ZIP'i extract edin
+   - ZIP dosyasını silin
 
-## Environment Variables
+### Önemli Kontroller
 
-CPanel'de Environment Variables bölümünde şunları ekleyin:
+#### 1. .htaccess Dosyası Kontrolü
 
-- `NODE_ENV=production`
-- `SMTP_HOST=mail.2bltd.com.tr`
-- `SMTP_PORT=465`
-- `SMTP_USER=info@2bltd.com.tr`
-- `SMTP_PASS=Bilgi-2024-2Btr`
-- `CONTACT_EMAIL=info@2bltd.com.tr`
-- `GOOGLE_VERIFICATION_CODE=-mu4kzAlaCY7w-bPQhnJIrSn4pNqxD0ZB4EaoyMI3Go`
-- `NEXT_PUBLIC_GA_MEASUREMENT_ID=G-B17F61F3N3`
+- `.htaccess` dosyasının `public_html` klasöründe olduğundan emin olun
+- Dosya izinlerinin 644 olduğunu kontrol edin
 
-## Test
+#### 2. Ana Sayfa Kontrolü
 
-1. Site açıldıktan sonra Google Search Console'da doğrulayın
-2. Contact formunu test edin
-3. Tüm sayfaları kontrol edin
+- `index.html` dosyasının `public_html` klasöründe olduğundan emin olun
 
-## Sorun Giderme
+#### 3. HTTPS Yönlendirmesi
 
-- Log dosyalarını kontrol edin
-- Node.js versiyonunu kontrol edin
-- Port çakışması olup olmadığını kontrol edin
-- Environment variables'ların doğru yüklendiğini kontrol edin
+- Site HTTP üzerinden erişilebilir olmalı
+- HTTPS yönlendirmesi `.htaccess` ile otomatik çalışacak
+
+### Test Etme
+
+1. **Ana Sayfa Testi**
+
+   ```
+   https://yourdomain.com
+   ```
+
+2. **Alt Sayfa Testleri**
+
+   ```
+   https://yourdomain.com/hakkimizda/
+   https://yourdomain.com/projelerimiz/
+   https://yourdomain.com/iletisim/
+   ```
+
+3. **404 Sayfası Testi**
+
+   ```
+   https://yourdomain.com/olmayan-sayfa
+   ```
+
+### Sorun Giderme
+
+#### Problem: Sayfa Bulunamadı Hatası
+
+**Çözüm:**
+
+- `.htaccess` dosyasının doğru yerde olduğunu kontrol edin
+- Apache mod_rewrite modülünün aktif olduğunu hosting sağlayıcınızdan öğrenin
+
+#### Problem: CSS/JS Dosyaları Yüklenmiyor
+
+**Çözüm:**
+
+- `_next` klasörünün `public_html` klasöründe olduğunu kontrol edin
+- Dosya izinlerini kontrol edin
+
+#### Problem: HTTPS Yönlendirmesi Çalışmıyor
+
+**Çözüm:**
+
+- Hosting sağlayıcınızdan SSL sertifikasının aktif olduğunu kontrol edin
+- `.htaccess` dosyasının doğru yüklendiğini kontrol edin
+
+#### Problem: Resimler Yüklenmiyor
+
+**Çözüm:**
+
+- `public` klasörünün içeriğinin doğru yerde olduğunu kontrol edin
+- Resim dosyalarının izinlerini kontrol edin
+
+### Performans Optimizasyonu
+
+1. **Gzip Compression**
+   - `.htaccess` dosyasında compression ayarları mevcut
+   - Apache mod_deflate modülünün aktif olduğunu kontrol edin
+
+2. **Browser Caching**
+   - `.htaccess` dosyasında cache ayarları mevcut
+   - Apache mod_expires modülünün aktif olduğunu kontrol edin
+
+### Güvenlik
+
+1. **Dosya Erişim Kısıtlamaları**
+   - `.htaccess` dosyasında güvenlik ayarları mevcut
+   - Hassas dosyalara erişim engellenmiştir
+
+2. **Güvenlik Başlıkları**
+   - XSS, CSRF koruması aktif
+   - Clickjacking koruması aktif
+
+### Hosting Sağlayıcısına Sorulacak Sorular
+
+1. Apache mod_rewrite modülü aktif mi?
+2. Apache mod_headers modülü aktif mi?
+3. Apache mod_deflate modülü aktif mi?
+4. Apache mod_expires modülü aktif mi?
+5. SSL sertifikası aktif mi?
+6. PHP sürümü nedir? (Gerekirse)
+
+### Son Kontroller
+
+- [ ] Ana sayfa açılıyor
+- [ ] Alt sayfalar çalışıyor
+- [ ] HTTPS yönlendirmesi çalışıyor
+- [ ] CSS/JS dosyaları yükleniyor
+- [ ] Resimler görüntüleniyor
+- [ ] Form çalışıyor (iletişim sayfası)
+- [ ] 404 sayfası çalışıyor
+- [ ] Mobile responsive çalışıyor
+
+### Destek
+
+Sorun yaşarsanız:
+
+1. Hosting sağlayıcınızın teknik desteğine başvurun
+2. Apache modüllerinin aktif olduğunu kontrol ettirin
+3. Dosya izinlerini kontrol edin
+4. `.htaccess` dosyasının doğru yerde olduğunu kontrol edin
+
+---
+
+**Not:** Bu rehber cPanel uyumlu olarak optimize edilmiştir. Eski Apache sürümleri için uyumluluk sorunları minimize edilmiştir.

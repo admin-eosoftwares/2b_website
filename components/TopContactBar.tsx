@@ -23,7 +23,8 @@ export default function TopContactBar() {
             if (isControlledScrollRef.current) return;
 
             const currentScrollY = window.scrollY;
-            if (currentScrollY > lastScrollYRef.current && currentScrollY > 100) {
+            // TopContactBar'ı scroll başladığında hemen gizle
+            if (currentScrollY > 50) {
                 setIsVisible(false);
             } else {
                 setIsVisible(true);

@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
                     <div className={`flex-1 space-y-4 transition-all duration-500 ease-out ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`} style={{ transitionDelay: isLoaded ? '100ms' : '0ms' }}>
                         <div className="flex items-center">
                             <Image
-                                src="/2b_logo_sag.png"
+                                src="/images/logos/2b_logo_sag.avif"
                                 alt="2B Logo"
                                 width={120}
                                 height={60}

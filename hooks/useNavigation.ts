@@ -9,6 +9,7 @@ export const useNavigation = (): UseNavigationReturn => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     // Initialize header animation
     useEffect(() => {
@@ -47,6 +48,29 @@ export const useNavigation = (): UseNavigationReturn => {
         setIsAboutDropdownOpen(false);
     }, []);
 
+    const handleMouseEnter = useCallback(() => {
+        if (closeTimeoutRef.current) {
+            clearTimeout(closeTimeoutRef.current);
+            closeTimeoutRef.current = null;
+        }
+        setIsAboutDropdownOpen(true);
+    }, []);
+
+    const handleMouseLeave = useCallback(() => {
+        closeTimeoutRef.current = setTimeout(() => {
+            setIsAboutDropdownOpen(false);
+        }, 150); // 150ms gecikme
+    }, []);
+
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (closeTimeoutRef.current) {
+                clearTimeout(closeTimeoutRef.current);
+            }
+        };
+    }, []);
+
     return {
         // State
         isAboutDropdownOpen,
@@ -56,6 +80,8 @@ export const useNavigation = (): UseNavigationReturn => {
         closeDropdown,
         setIsLoaded,
         setIsAboutDropdownOpen,
+        handleMouseEnter,
+        handleMouseLeave,
 
         // Refs
         dropdownRef

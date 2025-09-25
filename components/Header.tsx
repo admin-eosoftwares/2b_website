@@ -14,7 +14,8 @@ const Header = React.memo(function Header() {
     const {
         isAboutDropdownOpen,
         isLoaded,
-        setIsAboutDropdownOpen
+        handleMouseEnter,
+        handleMouseLeave
     } = useNavigation();
 
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu();
@@ -33,7 +34,7 @@ const Header = React.memo(function Header() {
     const headerClasses = `
         ${CSS_CLASSES.header}
         ${isLoaded ? CSS_CLASSES.headerLoaded : CSS_CLASSES.headerLoading}
-        ${isScrolled ? 'backdrop-blur-lg bg-white/60 shadow-lg' : 'backdrop-blur-sm bg-[#f8f8ff]/90'}
+        ${isScrolled ? 'backdrop-blur-lg bg-white/60 shadow-lg top-0' : 'backdrop-blur-sm bg-[#f8f8ff]/90 top-0 md:top-[60px]'}
     `.trim();
 
 
@@ -45,7 +46,7 @@ const Header = React.memo(function Header() {
                     <div className="flex-shrink-0 px-2 lg:px-0">
                         <Link href="/" className={CSS_CLASSES.focus} data-testid="logo-link">
                             <Image
-                                src="/2b_logo_sag.png"
+                                src="/images/logos/2b_logo_sag.avif"
                                 alt="2B Logo"
                                 width={500}
                                 height={500}
@@ -59,8 +60,8 @@ const Header = React.memo(function Header() {
                     <DesktopNavigation
                         pathname={pathname}
                         isAboutDropdownOpen={isAboutDropdownOpen}
-                        onAboutMouseEnter={() => setIsAboutDropdownOpen(true)}
-                        onAboutMouseLeave={() => setIsAboutDropdownOpen(false)}
+                        onAboutMouseEnter={handleMouseEnter}
+                        onAboutMouseLeave={handleMouseLeave}
                     />
 
                     {/* Mobile Menu Button */}

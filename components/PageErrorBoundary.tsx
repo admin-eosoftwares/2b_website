@@ -23,7 +23,7 @@ const PageErrorBoundary: React.FC<PageErrorBoundaryProps> = ({
                     {/* Logo */}
                     <div className="mb-6">
                         <Image
-                            src="/2b_logo_sag.png"
+                            src="/images/logos/2b_logo_sag.avif"
                             alt="2B Global Enerji"
                             width={64}
                             height={64}

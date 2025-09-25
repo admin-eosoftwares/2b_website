@@ -49,7 +49,7 @@ export default function Loading() {
                 {/* Logo */}
                 <div className="relative">
                     <Image
-                        src="/2b_logo2.png"
+                        src="/images/logos/2b_logo2.avif"
                         alt="2B Logo"
                         width={120}
                         height={120}

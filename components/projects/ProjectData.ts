@@ -18,8 +18,8 @@ export const realProject: Project = {
     title: "Otel GES Kurulumu",
     description: "Otel çatısına uygulanan GES projesi",
     images: [
-        "/kairos-valley-ges.jpg",
-        "/kairos-valley-ges2.jpg"
+        "/images/projects/kairos-valley-ges.avif",
+        "/images/projects/kairos-valley-ges2.avif"
     ],
     details: {
         capacity: "150 kWp",
@@ -34,8 +34,8 @@ export const sampleProjects: Project[] = [
         title: "Villa 1 GES Sistemi",
         description: "Özel konut çatısına uygulanan GES projesi",
         images: [
-            "/villa1_ges1.jpg",
-            "/villa1_ges2.jpg"
+            "/images/projects/villa1_ges1.avif",
+            "/images/projects/villa1_ges2.avif"
         ],
         details: {
             capacity: "10 kWp",
@@ -47,9 +47,9 @@ export const sampleProjects: Project[] = [
         title: "Villa 2 GES Sistemi",
         description: "Özel konut çatısına uygulanan GES projesi",
         images: [
-            "/villa2_ges1.webp",
-            "/villa2_ges2.webp",
-            "/villa2_ges3.webp"
+            "/images/projects/villa2_ges1.avif",
+            "/images/projects/villa2_ges2.avif",
+            "/images/projects/villa2_ges3.avif"
         ],
         details: {
             capacity: "20 kWp",
@@ -61,9 +61,8 @@ export const sampleProjects: Project[] = [
         title: "Villa 3 GES Sistemi",
         description: "Özel konut çatısına uygulanan GES projesi",
         images: [
-            "/villa3_ges1.webp",
-            "/villa3_ges2.webp",
-            "/villa3_ges3.webp"
+            "/images/projects/villa3_ges1.avif",
+            "/images/projects/villa3_ges2.avif"
         ],
         details: {
             capacity: "25 kWp",
@@ -75,9 +74,8 @@ export const sampleProjects: Project[] = [
         title: "Villa 4 GES Sistemi",
         description: "Özel konut çatısına uygulanan GES projesi",
         images: [
-            "/villa4_ges1.jpg",
-            "/villa4_ges2.jpg",
-            "/villa4_ges3.jpg"
+            "/images/projects/villa4_ges1.avif",
+            "/images/projects/villa4_ges2.avif"
         ],
         details: {
             capacity: "15 kWp",
@@ -89,8 +87,8 @@ export const sampleProjects: Project[] = [
         title: "Villa 5 GES Sistemi",
         description: "Özel konut çatısına uygulanan GES projesi",
         images: [
-            "/villa5_ges1.jpg",
-            "/villa5_ges2.jpg"
+            "/images/projects/villa5_ges1.avif",
+            "/images/projects/villa5_ges2.avif"
         ],
         details: {
             capacity: "10 kWp",
@@ -102,7 +100,7 @@ export const sampleProjects: Project[] = [
         title: "Villa 7 GES Sistemi",
         description: "Özel konut çatısına uygulanan GES projesi",
         images: [
-            "/villa7_ges1.jpg"
+            "/images/projects/villa7_ges1.avif"
         ],
         details: {
             capacity: "25 kWp",
@@ -114,7 +112,7 @@ export const sampleProjects: Project[] = [
         title: "Villa 8 GES Sistemi",
         description: "Özel konut çatısına uygulanan GES projesi",
         images: [
-            "/villa8_ges1.jpg"
+            "/images/projects/villa8_ges1.avif"
         ],
         details: {
             capacity: "10 kWp",
@@ -126,7 +124,7 @@ export const sampleProjects: Project[] = [
         title: "Villa 9 GES Sistemi",
         description: "Özel konut çatısına uygulanan GES projesi",
         images: [
-            "/villa9_ges1.jpg"
+            "/images/projects/villa9_ges1.avif"
         ],
         details: {
             capacity: "15 kWp",
@@ -138,7 +136,7 @@ export const sampleProjects: Project[] = [
         title: "Villa 10 GES Sistemi",
         description: "Özel konut çatısına uygulanan GES projesi",
         images: [
-            "/villa10_ges1.jpg"
+            "/images/projects/villa10_ges1.avif"
         ],
         details: {
             capacity: "15 kWp",
@@ -150,7 +148,7 @@ export const sampleProjects: Project[] = [
         title: "Villa 11 GES Sistemi",
         description: "Özel konut çatısına uygulanan GES projesi",
         images: [
-            "/villa11ges_1.jpg"
+            "/images/projects/villa11ges_1.avif"
         ],
         details: {
             capacity: "20 kWp",
@@ -162,7 +160,7 @@ export const sampleProjects: Project[] = [
         title: "Villa 12 GES Sistemi",
         description: "Özel konut çatısına uygulanan GES projesi",
         images: [
-            "/villa12_ges1.jpg"
+            "/images/projects/villa12_ges1.avif"
         ],
         details: {
             capacity: "15 kWp",
@@ -174,8 +172,8 @@ export const sampleProjects: Project[] = [
         title: "Otel 2 GES Sistemi",
         description: "Otel çatısına uygulanan GES projesi",
         images: [
-            "/otel2_ges1.jpg",
-            "/otel2_ges2.jpg"
+            "/images/projects/otel2_ges1.avif",
+            "/images/projects/otel2_ges2.avif"
         ],
         details: {
             capacity: "120 kWp",
@@ -187,8 +185,8 @@ export const sampleProjects: Project[] = [
         title: "Petrol Ofisi GES Sistemi",
         description: "Petrol istasyonu çatısına uygulanan GES projesi",
         images: [
-            "/petrolofisi_ges1.jpg",
-            "/petrolofisi_ges2.jpg"
+            "/images/projects/petrolofisi_ges1.avif",
+            "/images/projects/petrolofisi_ges2.avif"
         ],
         details: {
             capacity: "50 kWp",
